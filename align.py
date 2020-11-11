@@ -35,13 +35,9 @@ if __name__=='__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Align files.')
-    #parser.add_argument('-l','--language', type=str, required=True, help='ISO-693-3 code of language.')
-    #parser.add_argument('-e','--encoding', type=str, default='utf-8', help='Encoding of the files')
-    #parser.add_argument('src', type=str, help='Source file.')
-    #parser.add_argument('tgt', type=str, help='Target file')
 
-    outputs = parser.add_mutually_exclusive_group(required=False)
-    outputs.add_argument('-d','--output_dir', type=str, default='.', help='Directory to which to write output files')
+    #outputs = parser.add_mutually_exclusive_group(required=False)
+    parser.add_argument('-o','--output_dir', type=str, default='.', help='Directory to which to write the output files.')
     # outputs.add_argument('--print', action='store_true', help='Instead of saving to file, print.')
 
     parser.add_argument('input', metavar='N', default=None, type=str, nargs='+', help='List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt')

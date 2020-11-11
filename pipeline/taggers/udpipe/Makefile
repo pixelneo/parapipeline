@@ -1,8 +1,4 @@
-all: reqs models
-	# this will install requirements.txt, download all models, and so on.
-models:
+all:
 	curl --remote-name-all https://lindat.mff.cuni.cz/repository/xmlui/bitstream/handle/11234/1-3131/udpipe-ud-2.5-191206.zip
 	unzip udpipe-ud-2.5-191206.zip -d models/
 	rm -f udpipe-ud-2.5-191206.zip
-t:
-	echo 'udpipe'

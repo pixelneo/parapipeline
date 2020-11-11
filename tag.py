@@ -77,9 +77,9 @@ if __name__=='__main__':
 
     parser = argparse.ArgumentParser(description='Tag files.')
 
-    outputs = parser.add_mutually_exclusive_group(required=False)
-    outputs.add_argument('-d','--output_dir', type=str, default='.', help='Directory to which to write output files')
-    outputs.add_argument('--print', action='store_true', help='Instead of saving to file, print.')
+    #outputs = parser.add_mutually_exclusive_group(required=False)
+    parser.add_argument('-d','--output_dir', type=str, default='.', help='Directory to which to write the output files.')
+    #outputs.add_argument('--print', action='store_true', help='Instead of saving to file, print.')
 
     parser.add_argument('input', metavar='N', default=None, type=str, nargs='+', help='List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt')
 
@@ -88,7 +88,7 @@ if __name__=='__main__':
     # This is the main thing
     config = pipeline.utils.get_config()
     book_files, lang_files = utils.parse_input_files(args.input)
-    tag_lang_files(lang_files, config, args.output_dir, args.print)
+    tag_lang_files(lang_files, config, args.output_dir)
 
 
 
