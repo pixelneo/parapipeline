@@ -12,7 +12,7 @@ import pipeline.utils as utils
 
 def transliterate_files(lang_files, config, out_dir):
 
-    for lang, books in lang_files:
+    for lang, books in lang_files.items():
         polyglot_code = utils.get_polyglot_lang_code(config, lang)
         for book_name, version, path in books:
             output = []

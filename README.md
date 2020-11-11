@@ -13,38 +13,15 @@ Run `make` to install necessary packages, compile taggers, aligners, download mo
 ## Usage
 There are scripts `tag`, `transliterate`, `align` and `run`
 
-### Tagging only
-Help of `tag` utility
-~~~ 
-usage: tag.py [-h] [-d OUTPUT_DIR] N [N ...]
+All scripts have the same arguments as `run`.
 
-Tag files.
+~~~
+run.py [-h] [-o OUTPUT_DIR] N [N ...]
+
+Run pipeline.
 
 positional arguments:
-  N                     List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -d OUTPUT_DIR, --output_dir OUTPUT_DIR
-                        Directory to which to write the output files.tag.py [-h] -l LANGUAGE [-e ENCODING] [-d OUTPUT_DIR | --print] (-f INPUT_FILE | -i N [N ...])
-
-~~~
-
-### Transliterate only
-Help of `transliterate` utility
-~~~
-TODO
-~~~
-
-### Align only
-Help of `align` utility
-~~~
-usage: align.py [-h] [-o OUTPUT_DIR] N [N ...]
-
-Align files.
-
-positional arguments:
-  N                     List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt
+  N                     List of files to be processed. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt
 
 optional arguments:
   -h, --help            show this help message and exit
