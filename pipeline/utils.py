@@ -92,8 +92,8 @@ def output_to_xml(sents_iter: Iterator[List[Dict]], id_: str, lang:str):
             if 'word_trans' in w:
                 attr_w.update({'word_trans': w['word_trans'], 'lemma_trans': w['lemma_trans']})
 
-            elems.pop('word_trans', None) # try to pop transliterated
-            elems.pop('lemma_trans', None)
+            w.pop('word_trans', None) # try to pop transliterated
+            w.pop('lemma_trans', None)
 
             attr_w.update({'lemma': lemma, 'tag': ' '.join(w.values())})
             w_element = etree.SubElement(s_element, 'w', attrib=attr_w)
