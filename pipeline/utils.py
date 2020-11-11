@@ -73,8 +73,9 @@ def output_to_xml(sents_iter: Iterator[List[Dict]], id_: str, lang:str):
     attr_p = elems['p']
     p_element = etree.SubElement(text_element, 'p', attrib=attr_p)
 
-    for s in sents_iter:
+    for i, s in enumerate(sents_iter):
         attr_s = elems['s']
+        attr_s.update({'id': str(i)})
         s_element = etree.SubElement(p_element, 's', attrib=attr_s)
         for w in s:
             # w always has w['word']
