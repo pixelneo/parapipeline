@@ -3,11 +3,6 @@
     Author: Ondrej Mekota o(at)mkta.eu
 '''
 
-
-# TODO:
-#  this file will take LANGUAGE and TEXTS, TRANSLITERATE if given language needs it, and TAG the texts, yielding output in TEI XML format
-
-
 import os
 import warnings
 
@@ -15,12 +10,11 @@ import pipeline
 from pipeline.taggers.udpipe import UDPipeTagger
 from pipeline.taggers.treetagger import TreeTagger
 from pipeline.taggers.btagger import BTagger
-
 from pipeline.transliterators import transliterate
-
 import pipeline.utils as utils
 
-def get_correct_tagger(config:dict, lang):
+
+def _get_correct_tagger(config:dict, lang):
     if lang not in config:
         raise ValueError(f'ERROR: language code {lang} is not in the config')
 
@@ -35,7 +29,8 @@ def get_correct_tagger(config:dict, lang):
     else:
         raise ValueError(f'ERROR: tagger {tagger} does not exist')
 
-def tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False):
+
+def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False):
     """ Tag `books_info` (bookname, version, path) files. All the files are in the same `lang`.
     """
     for book_name, version, path in books_info:
@@ -65,22 +60,15 @@ def tag_lang_files(lang_files:dict, config, out_dir, print_=False):
         {'eng': [('hobbit', 'a', '../hobbit_END_a.txt'), ('prince', 'a', ...)...], ...}
     """
     for lang, books in lang_files.items():
-        tagger = get_correct_tagger(config, lang)
-        tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_)
-
-
+        tagger = _get_correct_tagger(config, lang)
+        _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_)
 
 
 if __name__=='__main__':
     import argparse
 
-
     parser = argparse.ArgumentParser(description='Tag files.')
-
-    #outputs = parser.add_mutually_exclusive_group(required=False)
     parser.add_argument('-d','--output_dir', type=str, default='.', help='Directory to which to write the output files.')
-    #outputs.add_argument('--print', action='store_true', help='Instead of saving to file, print.')
-
     parser.add_argument('input', metavar='N', default=None, type=str, nargs='+', help='List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt')
 
     args = parser.parse_args()
@@ -89,6 +77,3 @@ if __name__=='__main__':
     config = pipeline.utils.get_config()
     book_files, lang_files = utils.parse_input_files(args.input)
     tag_lang_files(lang_files, config, args.output_dir)
-
-
-
