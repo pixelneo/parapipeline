@@ -1,0 +1,2 @@
+albanian-ondra.udpipe filter=lfs diff=lfs merge=lfs -text
+upper-sorbian-ondra.udpipe filter=lfs diff=lfs merge=lfs -text

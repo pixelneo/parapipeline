@@ -1,0 +1,40 @@
+{
+    "text": {
+        "id": "",
+        "author": "",
+        "title": "",
+        "lang": "",
+        "version": "",
+        "group": "",
+        "publisher": "",
+        "pubplace": "",
+        "pubDateYear": "",
+        "pubDateMonth": "",
+        "origyear": "",
+        "isbn": "",
+        "txtype": "",
+        "comment": "",
+        "original": "",
+        "srclang": "",
+        "translator": "",
+        "transsex": "",
+        "authsex": "",
+        "transcomment": "",
+        "collectionauthor": "",
+        "collectiontitle": "",
+        "volume": "",
+        "pages": "",
+        "lang_var": "",
+        "wordcount": ""
+    },
+    "p": {
+        "id": ""
+    },
+    "s": {
+        "id": ""
+    },
+    "w": {
+        "lemma": "",
+        "tag": ""
+    }
+}

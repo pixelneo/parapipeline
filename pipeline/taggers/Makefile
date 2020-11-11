@@ -1,0 +1,10 @@
+TAGGERS = treetagger udpipe
+
+all: reqs btagger
+	for t in $(TAGGERS); do cd "$$t" && make; cd ..; done
+
+btagger:
+	unzip btagger.zip
+
+reqs: 
+	pip3 install -r requirements.txt

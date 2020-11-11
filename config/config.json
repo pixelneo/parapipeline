@@ -1,0 +1,318 @@
+{
+    "rus": {
+        "tagger": "udpipe",
+        "model": "russian-syntagrus-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "ru"
+    },
+    "pol": {
+        "tagger": "udpipe",
+        "model": "polish-pdb-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "pl"
+    },
+    "srp": {
+        "tagger": "udpipe",
+        "model": "serbian-set-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "sr"
+    },
+    "hrv": {
+        "tagger": "udpipe",
+        "model": "croatian-set-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "hr"
+    },
+    "bos": {},
+    "ces": {
+        "tagger": "udpipe",
+        "model": "czech-pdt-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "cs"
+    },
+    "bul": {
+        "tagger": "udpipe",
+        "model": "bulgarian-btb-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "bg"
+    },
+    "ukr": {
+        "tagger": "udpipe",
+        "model": "ukrainian-iu-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "uk"
+    },
+    "mkd": {
+        "tagger": "btagger",
+        "lang_code": "mk",
+        "transliterate": true,
+        "transliterate_before": null,
+        "polyglot_code": "mk"
+    },
+    "slk": {
+        "tagger": "udpipe",
+        "model": "slovak-snk-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "sk"
+    },
+    "slv": {
+        "tagger": "udpipe",
+        "model": "slovenian-ssj-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "sl"
+    },
+    "bel": {
+        "tagger": "udpipe",
+        "model": "belarusian-hse-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "be"
+    },
+    "eng": {
+        "tagger": "udpipe",
+        "model": "english-ewt-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null 
+    },
+    "deu": {
+        "tagger": "udpipe",
+        "model": "german-gsd-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "de"
+    },
+    "nld": {
+        "tagger": "udpipe",
+        "model": "dutch-lassysmall-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "nl"
+    },
+    "swe": {
+        "tagger": "udpipe",
+        "model": "swedish-lines-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "sv"
+    },
+    "fra": {
+        "tagger": "udpipe",
+        "model": "french-gsd-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "fr"
+    },
+    "ita": {
+        "tagger": "udpipe",
+        "model": "italian-vit-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "it"
+    },
+    "spa": {
+        "tagger": "udpipe",
+        "model": "spanish-gsd-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "es"
+    },
+    "ron": {
+        "tagger": "udpipe",
+        "model": "romanian-rrt-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "ro"
+    },
+    "est": {
+        "tagger": "udpipe",
+        "model": "estonian-edt-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "et"
+    },
+    "hun": {
+        "tagger": "udpipe",
+        "model": "hungarian-szeged-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "hu"
+    },
+    "fin": {
+        "tagger": "udpipe",
+        "model": "finnish-tdt-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "fi"
+    },
+    "ell": {
+        "tagger": "udpipe",
+        "model": "greek-gdt-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "el"
+    },
+    "lit": {
+        "tagger": "udpipe",
+        "model": "lithuanian-alksnis-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "lt"
+    },
+    "lav": {
+        "tagger": "udpipe",
+        "model": "latvian-lvtb-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "lv"
+    },
+    "tur": {
+        "tagger": "udpipe",
+        "model": "turkish-imst-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "tr"
+    },
+    "hye": {
+        "tagger": "udpipe",
+        "model": "armenian-armtdp-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "hy"
+    },
+    "sqi": {
+        "tagger": "udpipe",
+        "model": "albanian-ondra.udpipe",
+        "transliterate": false,
+        "transliterate_before": false,
+        "polyglot_code": "sq"
+    },
+    "kat": {
+        "tagger": "treetagger",
+        "model": "ka.par",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "ka"
+    },
+    "por": {
+        "tagger": "udpipe",
+        "model": "portuguese-gsd-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "pt"
+    },
+    "hsb": {
+        "tagger": "udpipe",
+        "model": "upper-sorbian-ondra.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "hsb"
+    },
+    "dsb": {
+        "tagger": "",
+        "model": "",
+        "transliterate": false,
+        "transliterate_before": null
+    },
+    "svm": {
+        "tagger": "",
+        "model": "",
+        "transliterate": false,
+        "transliterate_before": null
+    },
+    "csb": {
+        "tagger": "",
+        "model": "",
+        "transliterate": false,
+        "transliterate_before": null
+    },
+    "yid": {
+        "tagger": "",
+        "model": "",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "yi"
+    },
+    "dan": {
+        "tagger": "udpipe",
+        "model": "danish-ddt-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "da"
+    },
+    "nor": {
+        "tagger": "udpipe",
+        "model": "norwegian-nynorsk-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "nn"
+    },
+    "sco": {
+        "tagger": "",
+        "model": "",
+        "transliterate": false,
+        "transliterate_before": null
+    },
+    "fao": {
+        "tagger": "",
+        "model": "",
+        "transliterate": false,
+        "transliterate_before": null
+    },
+    "afr": {
+        "tagger": "udpipe",
+        "model": "afrikaans-afribooms-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "af"
+    },
+    "cat": {
+        "tagger": "udpipe",
+        "model": "catalan-ancora-ud-2.5-191206.udpipe",
+        "transliterate": false,
+        "transliterate_before": null,
+        "polyglot_code": "ca"
+    },
+    "zho": {
+        "tagger": "udpipe",
+        "model": "chinese-gsd-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "zh"
+    },
+    "jpn": {
+        "tagger": "udpipe",
+        "model": "japanese-gsd-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "ja"
+    },
+    "heb": {
+        "tagger": "udpipe",
+        "model": "hebrew-htb-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "he"
+    },
+    "bre": {
+        "tagger": "",
+        "model": "",
+        "transliterate": false,
+        "transliterate_before": null
+    },
+    "kor": {
+        "tagger": "udpipe",
+        "model": "korean-gsd-ud-2.5-191206.udpipe",
+        "transliterate": true,
+        "transliterate_before": false,
+        "polyglot_code": "ko"
+    }
+}

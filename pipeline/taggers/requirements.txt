@@ -1,0 +1,2 @@
+corpy==0.2.3
+treetaggerwrapper==2.3
