@@ -16,113 +16,44 @@ There are scripts `tag`, `transliterate`, `align` and `run`
 ### Tagging only
 Help of `tag` utility
 ~~~ 
-usage: tag.py [-h] -l LANGUAGE [-e ENCODING] [-d OUTPUT_DIR | --print] (-f INPUT_FILE | -i N [N ...])
+usage: tag.py [-h] [-d OUTPUT_DIR] N [N ...]
 
 Tag files.
 
+positional arguments:
+  N                     List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt
+
 optional arguments:
   -h, --help            show this help message and exit
-  -l LANGUAGE, --language LANGUAGE
-                        ISO-693-3 code of language.
-  -e ENCODING, --encoding ENCODING
-                        Encoding of the files
   -d OUTPUT_DIR, --output_dir OUTPUT_DIR
-                        Directory to which to write output files
-  --print               Instead of saving to file, print.
-  -f INPUT_FILE, --input_file INPUT_FILE
-                        Files specifying input file..
-  -i N [N ...], --input N [N ...]
-                        List of files to be tagged.
+                        Directory to which to write the output files.tag.py [-h] -l LANGUAGE [-e ENCODING] [-d OUTPUT_DIR | --print] (-f INPUT_FILE | -i N [N ...])
+
 ~~~
 
 ### Transliterate only
 Help of `transliterate` utility
 ~~~
-transliterate.py [-h] -l LANGUAGE [-e ENCODING] [-d OUTPUT_DIR | --print] (-f INPUT_FILE | -i N [N ...])
-
-Transliterate files.
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -l LANGUAGE, --language LANGUAGE
-                        ISO-693-3 code of language.
-  -e ENCODING, --encoding ENCODING
-                        Encoding of the files
-  -d OUTPUT_DIR, --output_dir OUTPUT_DIR
-                        Directory to which to write output files
-  --print               Instead of saving to file, print.
-  -f INPUT_FILE, --input_file INPUT_FILE
-                        Files specifying input file..
-  -i N [N ...], --input N [N ...]
-                        List of files to be tagged.
+TODO
 ~~~
 
 ### Align only
 Help of `align` utility
 ~~~
-align.py [-h] src tgt
+usage: align.py [-h] [-o OUTPUT_DIR] N [N ...]
 
 Align files.
 
 positional arguments:
-  src         Source file.
-  tgt         Target file
+  N                     List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help            show this help message and exit
+  -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        Directory to which to write the output files.
 ~~~
 
 ### Run all
 Does not work yet: `run` will take a json file with structure similar to the following example and it will run transliteration if needed, and tagging
-
-
-### Structure for transliteration and tagging
-~~~
-{
-    "files": [
-        {
-            "path": "/home/user/file1.txt",
-            "lang": "eng",
-            "enc": "utf-8"
-        },
-        {
-            "path": "/home/user/file2.txt",
-            "lang": "ces",
-            "enc": "iso-8859-2"
-        },
-        ...
-    ]
-}
-~~~
-
-
-### Structure for alignment
-~~~
-{
-    "texts": [
-        { 
-            "name": "alice-in-wonderland",
-            "files": [
-                {
-                    "path": "/home/user/alice-file-english.txt",
-                    "lang": "eng",
-                    "enc": "utf-8"
-                },
-                {
-                    "path": "/home/user/alice-file-cs.txt",
-                    "lang": "ces",
-                    "enc": "iso-8859-2"
-                }
-            ]
-        },
-        {
-            "name": "winnie-the-pooh",
-            ... 
-        },
-        ... 
-    ]
-}
-~~~
 
 
 ## Adding new languages
