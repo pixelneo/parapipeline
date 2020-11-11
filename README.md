@@ -6,7 +6,9 @@ Make sure you have following programs installed
 - `wget`
 - All prerequisites for Hunalign
 - Polyglot for transliteration requires `python-numpy` `libicu-dev`. (`apt-get python-numpy libicu-dev`)
+- `git-lfs`
 
+Run `git lfs install`.
 Run `make` to install necessary packages, compile taggers, aligners, download models, ...
 
 
