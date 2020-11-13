@@ -1,0 +1,17 @@
+<linkGrp toDoc="dostoyevsky_ces.txt" fromDoc="dostoyevsky_eng.txt">
+  <link type="1-1" xtargets="0;0" status="null"/>
+  <link type="1-1" xtargets="1;1" status="null"/>
+  <link type="1-1" xtargets="2;2" status="null"/>
+  <link type="1-2" xtargets="3;3 4" status="null"/>
+  <link type="1-1" xtargets="4;5" status="null"/>
+  <link type="1-1" xtargets="5;6" status="null"/>
+  <link type="2-1" xtargets="6 7;7" status="null"/>
+  <link type="1-1" xtargets="8;8" status="null"/>
+  <link type="1-1" xtargets="9;9" status="null"/>
+  <link type="1-1" xtargets="10;10" status="null"/>
+  <link type="2-1" xtargets="11 12;11" status="null"/>
+  <link type="2-1" xtargets="13 14;12" status="null"/>
+  <link type="1-1" xtargets="15;13" status="null"/>
+  <link type="1-1" xtargets="16;14" status="null"/>
+  <link type="3-1" xtargets="17 18 19;15" status="null"/>
+</linkGrp>

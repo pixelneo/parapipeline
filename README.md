@@ -25,13 +25,15 @@ All scripts expect line delimited sentences in nutf-8 encoded files.
 The name of these files is `NAME_LANG_[_ID][.ext]`, where `NAME` is arbitrary text not containing `_`, `LANG` is iso-639-3 language code, 
 optional `ID` distinguished between more variants of the same text (e.g. different translations), `.ext` is also optional.
 
+See files in `examples` folder for some example input files.
+
 ### Output
 `run` script outputs tagged texts in XML files. 
 
 And when possible also sentence alignment file in XML. 
 This file contains the alignment.
 
- **TODO**: finish
+See `examples/outputs` for example output of this pipeline.
 
 ### Help 
 ~~~
@@ -51,54 +53,31 @@ optional arguments:
 
 ## Languages
 
-| Done| Language |
-|:---|:----------------------|
-|:white_check_mark: | Afrikaans |
-|:white_check_mark: | Albanian |
-|:white_check_mark: | Armenian |
-|:white_check_mark: | Armenian |
-|:white_check_mark: | Belarusian |
-|:x: | Bosnian |
-|:white_check_mark: | Bulgarian |
-|:white_check_mark: | Catalan |
-|:white_check_mark: | Chinese |
-|:white_check_mark: | Croatian |
-|:white_check_mark: | Czech |
-|:white_check_mark: | Danish |
-|:white_check_mark: | Dutch |
-|:white_check_mark: | English |
-|:white_check_mark: | Estonian |
-|:white_check_mark: | Finnish |
-|:white_check_mark: | French |
-|:white_check_mark: | Georgian |
-|:white_check_mark: | German |
-|:white_check_mark: | Hebrew |
-|:white_check_mark: | Hungarian |
-|:white_check_mark: | Italian |
-|:white_check_mark: | Japanese |
-|:x: | Kashubian |
-|:white_check_mark: | Korean |
-|:white_check_mark: | Latvian |
-|:white_check_mark: | Lithuanian |
-|:x: | Lower Sorbian |
-|:white_check_mark: | Macedonian |
-|:white_check_mark: | Modern Greek |
-|:x: | Molise Slavic |
-|:white_check_mark: | Norwegian |
-|:white_check_mark: | Polish |
-|:white_check_mark: | Portuguese |
-|:white_check_mark: | Romanian |
-|:white_check_mark: | Russian |
-|:white_check_mark: | Serbian |
-|:white_check_mark: | Slovak |
-|:white_check_mark: | Slovenian |
-|:white_check_mark: | Spanish |
-|:white_check_mark: | Swedish |
-|:white_check_mark: | Turkish |
-|:white_check_mark: | Ukrainian |
-|:white_check_mark: | Upper Sorbian |
-|:x: | Yiddish |
-
+| Done| Language |  Done| Language |
+|:---|:----------------------| :---|:----------------------|
+|:white_check_mark: | Afrikaans | :x: | Kashubian |
+|:white_check_mark: | Albanian | :white_check_mark: | Korean |
+|:white_check_mark: | Armenian | :white_check_mark: | Latvian |
+|:white_check_mark: | Armenian | :white_check_mark: | Lithuanian |
+|:white_check_mark: | Belarusian | :x: | Lower Sorbian |
+|:x: | Bosnian | :white_check_mark: | Macedonian |
+|:white_check_mark: | Bulgarian | :white_check_mark: | Modern Greek |
+|:white_check_mark: | Catalan | :x: | Molise Slavic |
+|:white_check_mark: | Chinese | :white_check_mark: | Norwegian |
+|:white_check_mark: | Croatian | :white_check_mark: | Polish |
+|:white_check_mark: | Czech | :white_check_mark: | Portuguese |
+|:white_check_mark: | Danish | :white_check_mark: | Romanian |
+|:white_check_mark: | Dutch | :white_check_mark: | Russian |
+|:white_check_mark: | English | :white_check_mark: | Serbian |
+|:white_check_mark: | Estonian | :white_check_mark: | Slovak |
+|:white_check_mark: | Finnish | :white_check_mark: | Slovenian |
+|:white_check_mark: | French | :white_check_mark: | Spanish |
+|:white_check_mark: | Georgian | :white_check_mark: | Swedish |
+|:white_check_mark: | German | :white_check_mark: | Turkish |
+|:white_check_mark: | Hebrew | :white_check_mark: | Ukrainian |
+|:white_check_mark: | Hungarian | :white_check_mark: | Upper Sorbian |
+|:white_check_mark: | Italian | :x: | Yiddish |
+|:white_check_mark: | Japanese | 
 
 ### Adding new languages
 - Edit `.config/config.json`, follow the structure of the other languages in the file to add a new one.
