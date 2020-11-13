@@ -1,7 +1,7 @@
 all: | setup taggers aligners transl
 
 setup:
-	pip install -r pipeline/requirements.txt
+	pip3 install -r pipeline/requirements.txt
 taggers:
 	cd pipeline/taggers && make
 aligners:
