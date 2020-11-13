@@ -7,8 +7,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,5 +22,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: ls
+        run: make
 
