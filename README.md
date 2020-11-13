@@ -1,5 +1,5 @@
 # parapipeline 
-**In development, all of this can (and will) change.**
+**In development, all of this can change.**
 
 Parapipeline is a pipeline for POS tagging of texts in multiple languages, sentence alignment, and transliteration.
 
@@ -20,7 +20,7 @@ There are scripts `tag`, `transliterate`, `align` and `run`
 All scripts have the same arguments as `run`.
 
 ### Input
-All scripts expect line delimited sentences in nutf-8 encoded files.
+All scripts expect line delimited sentences in utf-8 encoded files.
 
 The name of these files is `NAME_LANG_[_ID][.ext]`, where `NAME` is arbitrary text not containing `_`, `LANG` is iso-639-3 language code, 
 optional `ID` distinguished between more variants of the same text (e.g. different translations), `.ext` is also optional.
