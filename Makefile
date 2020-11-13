@@ -1,4 +1,6 @@
-all: taggers aligners transl
+all: pipeline taggers aligners transl
+pipeline:
+	cd pipeline && pip install -r requirements.txt
 taggers:
 	cd pipeline/taggers && make
 aligners:
