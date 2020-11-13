@@ -1,5 +1,4 @@
-all: | setup #taggers aligners transl
-	pip list
+all: | setup taggers aligners transl
 
 setup:
 	pip install -r pipeline/requirements.txt
