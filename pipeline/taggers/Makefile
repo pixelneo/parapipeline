@@ -8,3 +8,8 @@ btagger:
 
 reqs: 
 	pip3 install -r requirements.txt
+
+clean:
+	rm -rf btagger
+	for t in $(TAGGERS); do cd "$$t" && make clean; cd ..; done
+

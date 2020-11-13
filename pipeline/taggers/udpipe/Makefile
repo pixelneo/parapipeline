@@ -3,3 +3,6 @@ all:
 	unzip udpipe-ud-2.5-191206.zip
 	mv udpipe-ud-2.5-191206/* models/
 	rm -f udpipe-ud-2.5-191206.zip
+
+clean:
+	rm -rf models/*191206.udpipe

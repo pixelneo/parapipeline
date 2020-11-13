@@ -31,5 +31,3 @@ clean:
 	rm -rf cmd
 	rm -rf doc
 	rm -rf lib
-t:
-	echo 'treetatter'
