@@ -5,14 +5,14 @@ down:
 	wget -c https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/install-tagger.sh
 
 pars:
-	wget -c http://corpus.leeds.ac.uk/serge/mocky/ka.par  # georgian
+	#wget -c http://corpus.leeds.ac.uk/serge/mocky/ka.par  # georgian
 	wget -c https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/english.par.gz  # english, just to try functionality
 
 build:
 	sh install-tagger.sh
 
 setupka:
-	mv ka.par lib/
+	cp ka.par lib/
 	echo "" > lib/ka-abbreviations
 	cat cmd/tree-tagger-czech | sed -e 's/czech/ka/g' > cmd/tree-tagger-ka
 	chmod +x cmd/tree-tagger-ka
