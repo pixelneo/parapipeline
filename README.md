@@ -54,22 +54,22 @@ optional arguments:
 ## Languages
 
 | Done| Language | Done| Language | Done| Language |
-|:---|:----------------------| :---|:----------------------| :---|:----------------------|
-|:white_check_mark: | Afrikaans | :white_check_mark: | Finnish | :x: | Molise Slavic |
-|:white_check_mark: | Albanian | :white_check_mark: | French | :white_check_mark: | Norwegian |
-|:white_check_mark: | Armenian | :white_check_mark: | Georgian | :white_check_mark: | Polish |
-|:white_check_mark: | Armenian | :white_check_mark: | German | :white_check_mark: | Portuguese |
-|:white_check_mark: | Belarusian | :white_check_mark: | Hebrew | :white_check_mark: | Romanian |
-|:x: | Bosnian | :white_check_mark: | Hungarian | :white_check_mark: | Russian |
-|:white_check_mark: | Bulgarian | :white_check_mark: | Italian | :white_check_mark: | Serbian |
-|:white_check_mark: | Catalan | :white_check_mark: | Japanese | :white_check_mark: | Slovak |
-|:white_check_mark: | Chinese | :x: | Kashubian | :white_check_mark: | Slovenian |
-|:white_check_mark: | Croatian | :white_check_mark: | Korean | :white_check_mark: | Spanish |
-|:white_check_mark: | Czech | :white_check_mark: | Latvian | :white_check_mark: | Swedish |
-|:white_check_mark: | Danish | :white_check_mark: | Lithuanian | :white_check_mark: | Turkish |
-|:white_check_mark: | Dutch | :x: | Lower Sorbian | :white_check_mark: | Ukrainian |
-|:white_check_mark: | English | :white_check_mark: | Macedonian | :white_check_mark: | Upper Sorbian |
-|:white_check_mark: | Estonian | :white_check_mark: | Modern Greek | :x: | Yiddish |
+|:------------------|:--------------| :------------------|:---------------| :------------------|:-----------------|
+|:white_check_mark: | Afrikaans     | :white_check_mark: | French         |:white_check_mark: | Norwegian | 
+|:white_check_mark: | Albanian      | :white_check_mark: | Georgian       |:white_check_mark: | Polish | 
+|:white_check_mark: | Armenian      | :white_check_mark: | German         |:white_check_mark: | Portuguese | 
+|:white_check_mark: | Belarusian    | :white_check_mark: | Hebrew         |:white_check_mark: | Romanian | 
+|:x:                | Bosnian       | :white_check_mark: | Hungarian      |:white_check_mark: | Russian | 
+|:white_check_mark: | Bulgarian     | :white_check_mark: | Italian        |:white_check_mark: | Serbian | 
+|:white_check_mark: | Catalan       | :white_check_mark: | Japanese       |:white_check_mark: | Slovak | 
+|:white_check_mark: | Chinese       | :x:                | Kashubian      |:white_check_mark: | Slovenian | 
+|:white_check_mark: | Croatian      | :white_check_mark: | Korean         |:white_check_mark: | Spanish | 
+|:white_check_mark: | Czech         | :white_check_mark: | Latvian        |:white_check_mark: | Swedish | 
+|:white_check_mark: | Danish        | :white_check_mark: | Lithuanian     |:white_check_mark: | Turkish | 
+|:white_check_mark: | Dutch         | :x:                | Lower Sorbian  |:white_check_mark: | Ukrainian | 
+|:white_check_mark: | English       | :white_check_mark: | Macedonian     |:white_check_mark: | Upper Sorbian | 
+|:white_check_mark: | Estonian      | :white_check_mark: | Modern Greek   |:x:                | Yiddish |
+|:white_check_mark: | Finnish       | :x:                | Molise Slavic  |                   |         |
 
 
 ### Adding new languages
