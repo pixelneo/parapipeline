@@ -50,8 +50,9 @@
         "polyglot_code": "uk"
     },
     "mkd": {
-        "tagger": "btagger",
+        "tagger": "classla",
         "lang_code": "mk",
+        "model": "mk",
         "transliterate": true,
         "transliterate_before": null,
         "polyglot_code": "mk"

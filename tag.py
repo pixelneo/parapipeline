@@ -10,6 +10,7 @@ import pipeline
 from pipeline.taggers.udpipe import UDPipeTagger
 from pipeline.taggers.treetagger import TreeTagger
 from pipeline.taggers.btagger import BTagger
+from pipeline.taggers.classlamodel import ClasslaTagger
 from pipeline.transliterators import transliterate
 import pipeline.utils as utils
 
@@ -26,6 +27,8 @@ def _get_correct_tagger(config:dict, lang):
         return TreeTagger(config)
     elif tagger == 'btagger':
         return BTagger(config)
+    elif tagger == 'classla':
+        return ClasslaTagger(config)
     else:
         raise ValueError(f'ERROR: tagger {tagger} does not exist')
 
@@ -47,8 +50,8 @@ def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None
                     w['lemma_trans'] = ''.join(transliterate.transliterate(w['lemma'], polyglot_code))
                     sent.append(w)
                 sentences.append(sent)
-
         output_xml = utils.output_to_xml(sentences, os.path.basename(path), lang)  # TODO id_ if files given as list/by file
+
         if print_:
             print(output_xml)
         else:

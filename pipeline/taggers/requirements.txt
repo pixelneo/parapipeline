@@ -1,2 +1,3 @@
 corpy==0.2.3
 treetaggerwrapper==2.3
+classla==0.0.11

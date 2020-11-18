@@ -1,4 +1,4 @@
-TAGGERS = treetagger udpipe
+TAGGERS = treetagger udpipe classla
 
 all: reqs btagger
 	for t in $(TAGGERS); do cd "$$t" && make; cd ..; done
