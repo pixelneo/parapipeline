@@ -49,35 +49,3 @@ class BaseTagger:
         raise NotImplementedError('Not implemented base class')
 
 
-class Sentence:
-    def __init__(self, words):
-        self.words = words
-
-
-    def __iter__(self):
-        for w in words:
-            pass
-        # TODO how to do this with several taggers, each tagger could give this class an iterator over words, then we would just iterate over that
-
-
-
-
-# # TODO not sure if this is the best way
-# #   what if a sentence returned a dict, which is easily transformable to XML attributes 
-# class Word:
-    # def __init__(self):
-        # pass
-
-    # @property
-    # def word(self):
-        # raise NotImplementedError()
-
-    # @property
-    # def lemma(self):
-        # raise NotImplementedError()
-
-    # @property
-    # def (self):
-        # raise NotImplementedError()
-
-
