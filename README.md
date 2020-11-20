@@ -94,3 +94,8 @@ You can also add scripts to download more models and so on.
 - Hunalign: D. Varga, L. Németh, P. Halácsy, A. Kornai, V. Trón, V. Nagy (2005). Parallel corpora for medium density languages In Proceedings of the RANLP 2005, pages 590-596.
 - BTagger: https://github.com/agesmundo/BTagger
 - Georgian Treetagger model comes from here: http://corpus.leeds.ac.uk/serge/mocky/ka.par
+
+# License
+CC BY-NC-SA
+
+This work mainly depends on trained UDPipe models which are licesed under CC BY-NC-SA.
