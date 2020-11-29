@@ -11,7 +11,7 @@ FILE_PATH = os.path.dirname(__file__)
 
 
 class Aligner:
-    def _convert_output(self, output: str):
+    def _convert_output(self, output: str, len_src: int, len_tgt:int):
         """Converts output of hunalign to indices links
 
         Args:
@@ -49,6 +49,15 @@ class Aligner:
             from_ = list(range(*i_src))
             to_ = list(range(*i_tgt))
             links.append((type_, from_, to_))
+
+        if rungs[-1] != (len_src, len_tgt):
+            index_ = 0 if rungs[-1][0] != len_src-1 else 1
+            type_ = (1,0) if index_ == 0 else (0,1)
+            for s in range(max(rungs[-1]), len_src if index_ == 0 else len_tgt):
+                if rungs[-1][0] != 0:  # first n sentences of the first lang are not aligned
+                    links.append((type_, [s], []))
+                elif rungs[-1][1] != 0: # first n sentences of the second lang are not aligned
+                    links.append((type_, [], [s]))
 
         return links
 
@@ -89,4 +98,11 @@ class Aligner:
             capture_output=True,
             encoding='utf-8',
         )
-        return self._convert_output(p.stdout)
+        len_src = len_tgt = 0
+        with open(path_src) as f:
+            for i in f.readlines():
+                len_src += 1
+        with open(path_tgt) as f:
+            for i in f.readlines():
+                len_tgt += 1
+        return self._convert_output(p.stdout, len_src, len_tgt)
