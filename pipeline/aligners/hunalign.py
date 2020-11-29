@@ -23,8 +23,8 @@ class Aligner:
 
         """
         rungs = [
-            tuple([int(i) for i in x.strip().split("\t")[:2]])
-            for x in output.strip().split("\n")
+            tuple([int(i) for i in x.strip().split('\t')[:2]])
+            for x in output.strip().split('\n')
         ]
 
         # contains (link_type, from, to)
@@ -53,12 +53,12 @@ class Aligner:
         try:
             fd0, src_path = tempfile.mkstemp()
             fd1, tgt_path = tempfile.mkstemp()
-            with open(fd0, "w") as f:
+            with open(fd0, 'w') as f:
                 f.write(src)
-            with open(fd1, "w") as f:
+            with open(fd1, 'w') as f:
                 f.write(tgt)
 
-            output = self.align_files(src_path, tgt_path, opts=["-utf"])
+            output = self.align_files(src_path, tgt_path, opts=['-utf'])
 
         finally:
             os.remove(src_path)
@@ -73,11 +73,11 @@ class Aligner:
                 e.g. ((1,2), [23], [22, 23])
 
         """
-        args = [os.path.join(FILE_PATH, "hunalign/data/null.dic"), path_src, path_tgt]
+        args = [os.path.join(FILE_PATH, '-utf', 'hunalign/data/null.dic'), path_src, path_tgt]
         args.extend(opts)
         p = subprocess.run(
-            [os.path.join(FILE_PATH, "hunalign/src/hunalign/hunalign"), *args],
+            [os.path.join(FILE_PATH, 'hunalign/src/hunalign/hunalign'), *args],
             capture_output=True,
-            encoding="utf-8",
+            encoding='utf-8',
         )
         return self._convert_output(p.stdout)

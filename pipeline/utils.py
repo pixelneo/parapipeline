@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-'''
+"""
     Author: Ondrej Mekota o(at)mkta.eu
-'''
+"""
 
 import os
 import json
@@ -36,7 +36,7 @@ def alignment_to_xml(links:list, path_src, path_tgt):
     for (t0, t1), from_, to_ in links:
         attr = {
                 'type': f'{t0}-{t1}',
-                'xtargets': f'{" ".join(map(str, from_))};{" ".join(map(str, to_))}',
+                'xtargets': f'{' '.join(map(str, from_))};{' '.join(map(str, to_))}',
                 'status': 'null'  # TODO what should be here
         }
         link = etree.SubElement(doc, 'link', attrib=attr)

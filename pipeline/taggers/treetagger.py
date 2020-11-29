@@ -20,9 +20,9 @@ class TreeTagger(BaseTagger):
     def _check_model(self, lang):
         """ Check if model exists, is loaded, and load it if needed. """
         if lang not in self.models:
-            tagdir = os.path.join(FILE_PATH, "treetagger")
+            tagdir = os.path.join(FILE_PATH, 'treetagger')
             tagparfile = os.path.join(
-                FILE_PATH, "treetagger", "lib", self._lang2modelname(lang)
+                FILE_PATH, 'treetagger', 'lib', self._lang2modelname(lang)
             )
 
             self.models[lang] = ttw.TreeTagger(TAGDIR=tagdir, TAGPARFILE=tagparfile)
@@ -43,14 +43,14 @@ class TreeTagger(BaseTagger):
             words = ttw.make_tags(self.models[lang].tag_text(s))
             res = []
             for w in words:
-                res.append({"word": w.word, "lemma": w.lemma, "pos": w.pos})
+                res.append({'word': w.word, 'lemma': w.lemma, 'pos': w.pos})
             yield res
 
     def process_file(
         self,
         path: str,
         lang: str,
-        encoding: str = "utf-8",
+        encoding: str = 'utf-8',
         in_format=None,
         out_format=None,
     ):
