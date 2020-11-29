@@ -32,6 +32,16 @@ class Aligner:
         #  e.g. ((1,2), [23], [22, 23])
         links = []
 
+        # the first sentences of at least one of the languages are not aligned
+        if rungs[0] != (0,0):
+            index_ = 0 if rungs[0][0] != 0 else 1
+            type_ = (1,0) if index_ == 0 else (0,1)
+            for s in range(max(rungs[0])):
+                if rungs[0][0] != 0:  # first n sentences of the first lang are not aligned
+                    links.append((type_, [s], []))
+                elif rungs[0][1] != 0: # first n sentences of the second lang are not aligned
+                    links.append((type_, [], [s]))
+
         for rung, prev_rung in zip(rungs[1:], rungs):  # first one is always 0 0
             i_src = (prev_rung[0], rung[0])
             i_tgt = (prev_rung[1], rung[1])
@@ -58,14 +68,14 @@ class Aligner:
             with open(fd1, 'w') as f:
                 f.write(tgt)
 
-            output = self.align_files(src_path, tgt_path, opts=['-utf'])
+            output = self.align_files(src_path, tgt_path)
 
         finally:
             os.remove(src_path)
             os.remove(tgt_path)
         return output
 
-    def align_files(self, path_src, path_tgt, opts=[]):
+    def align_files(self, path_src, path_tgt, opts=None):
         """Aligns files `path_src` and `path_tgt`
 
         Returns:
@@ -73,8 +83,7 @@ class Aligner:
                 e.g. ((1,2), [23], [22, 23])
 
         """
-        args = [os.path.join(FILE_PATH, '-utf', '-realign', 'hunalign/data/null.dic'), path_src, path_tgt]
-        args.extend(opts)
+        args = ['-utf', '-realign', os.path.join(FILE_PATH,'hunalign/data/null.dic'), path_src, path_tgt]
         p = subprocess.run(
             [os.path.join(FILE_PATH, 'hunalign/src/hunalign/hunalign'), *args],
             capture_output=True,

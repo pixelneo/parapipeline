@@ -28,7 +28,8 @@ def align_book_files(book_files, out_dir):
         for (l1, v1, file1), (l2, v2, file2) in pairs:
             links = a.align_files(file1, file2)
             output_xml = utils.alignment_to_xml(links, file1, file2)
-            utils.save_output(output_xml, f'{book}_{l1}-{l2}_{v1}-{v2}', out_dir, '_aligned.xml')
+            out_name = f'{book}_{l1}-{l2}_{v1}-{v2}'
+            utils.save_output(output_xml, out_name, out_dir, '_aligned.xml')
 
 
 if __name__=='__main__':
