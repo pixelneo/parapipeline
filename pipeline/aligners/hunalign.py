@@ -35,12 +35,14 @@ class Aligner:
         # the first sentences of at least one of the languages are not aligned
         if rungs[0] != (0,0):
             index_ = 0 if rungs[0][0] != 0 else 1
-            type_ = (1,0) if index_ == 0 else (0,1)
-            for s in range(max(rungs[0])):
-                if rungs[0][0] != 0:  # first n sentences of the first lang are not aligned
-                    links.append((type_, [s], []))
-                elif rungs[0][1] != 0: # first n sentences of the second lang are not aligned
-                    links.append((type_, [], [s]))
+            for index_ in [0,1]:
+                type_ = (1,0) if index_ == 0 else (0,1)
+                to_ = [rungs[0][0], rungs[0][1]][index_]
+                for s in range(to_):
+                    if index_ == 1:  # first n sentences of the first lang are not aligned
+                        links.append((type_, [s], []))
+                    elif index_ == 0: # first n sentences of the second lang are not aligned
+                        links.append((type_, [], [s]))
 
         for rung, prev_rung in zip(rungs[1:], rungs):  # first one is always 0 0
             i_src = (prev_rung[0], rung[0])
@@ -51,13 +53,15 @@ class Aligner:
             links.append((type_, from_, to_))
 
         if rungs[-1] != (len_src, len_tgt):
-            index_ = 0 if rungs[-1][0] != len_src-1 else 1
-            type_ = (1,0) if index_ == 0 else (0,1)
-            for s in range(max(rungs[-1]), len_src if index_ == 0 else len_tgt):
-                if rungs[-1][0] != 0:  # first n sentences of the first lang are not aligned
-                    links.append((type_, [s], []))
-                elif rungs[-1][1] != 0: # first n sentences of the second lang are not aligned
-                    links.append((type_, [], [s]))
+            for index_ in [0,1]:
+                type_ = (1,0) if index_ == 0 else (0,1)
+                from_ = rungs[-1][index_]
+                to_ = [len_src, len_tgt][index_]
+                for s in range(from_, to_):
+                    if index_ == 0:  # first n sentences of the first lang are not aligned
+                        links.append((type_, [s], []))
+                    elif index_ == 1: # first n sentences of the second lang are not aligned
+                        links.append((type_, [], [s]))
 
         return links
 
