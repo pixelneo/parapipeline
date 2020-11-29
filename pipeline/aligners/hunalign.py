@@ -73,7 +73,7 @@ class Aligner:
                 e.g. ((1,2), [23], [22, 23])
 
         """
-        args = [os.path.join(FILE_PATH, '-utf', 'hunalign/data/null.dic'), path_src, path_tgt]
+        args = [os.path.join(FILE_PATH, '-utf', '-realign', 'hunalign/data/null.dic'), path_src, path_tgt]
         args.extend(opts)
         p = subprocess.run(
             [os.path.join(FILE_PATH, 'hunalign/src/hunalign/hunalign'), *args],
