@@ -39,9 +39,9 @@ class Aligner:
                 type_ = (1,0) if index_ == 0 else (0,1)
                 to_ = [rungs[0][0], rungs[0][1]][index_]
                 for s in range(to_):
-                    if index_ == 1:  # first n sentences of the first lang are not aligned
+                    if index_ == 0:  # first n sentences of the first lang are not aligned
                         links.append((type_, [s], []))
-                    elif index_ == 0: # first n sentences of the second lang are not aligned
+                    elif index_ == 1: # first n sentences of the second lang are not aligned
                         links.append((type_, [], [s]))
 
         for rung, prev_rung in zip(rungs[1:], rungs):  # first one is always 0 0
