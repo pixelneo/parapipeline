@@ -45,8 +45,8 @@ class Aligner:
                         links.append((type_, [], [s]))
 
         for rung, prev_rung in zip(rungs[1:], rungs):  # first one is always 0 0
-            i_src = (prev_rung[0], rung[0])
-            i_tgt = (prev_rung[1], rung[1])
+            i_src = (min(prev_rung[0], len_src), min(rung[0], len_src))
+            i_tgt = (min(prev_rung[1], len_tgt), min(rung[1], len_tgt))
             type_ = (i_src[1] - i_src[0], i_tgt[1] - i_tgt[0])
             from_ = list(range(*i_src))
             to_ = list(range(*i_tgt))
