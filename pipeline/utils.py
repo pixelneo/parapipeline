@@ -174,6 +174,16 @@ def book_files_to_lang_files(book_files:dict):
     return lang_files
 
 
+def flatten_lang_files(lang_files:dict):
+    """ Convert lang_files (dict with lang keys, book values) 
+    to list of files"""
+    out = []
+    for lang, books in lang_files.items():
+        for book_name, version, path in books:
+            out.append((book_name, version, path, lang))
+    return out
+
+
 def get_polyglot_lang_code(config:dict, lang:str):
     if lang not in config:
         raise ValueError(f'ERROR: language code {lang} is not in the config')

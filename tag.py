@@ -35,12 +35,14 @@ def _get_correct_tagger(config:dict, lang):
         raise ValueError(f'ERROR: tagger {tagger} does not exist')
 
 
-def _parallel_tag_files(tagger, book_name, version, path, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
+def _parallel_tag_files(book_name, version, path, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
     if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
         # if already aligned file exist and we are not going to `rewerite` them
         print(f'  skipping file "{path}"')
         return 
     print(f'  tagging "{path}"...')
+    tagger = _get_correct_tagger(config, lang)
+
     sents_iter = tagger.process_file(path, lang, encoding=enc)
     sentences = sents_iter
 
@@ -65,18 +67,13 @@ def _parallel_tag_files(tagger, book_name, version, path, config, lang, enc='utf
     print(f'  DONE tagging "{path}"')
 
 
-def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
-    """ Tag `books_info` (bookname, version, path) files. All the files are in the same `lang`.
-    """
-    Parallel(n_jobs=2)(delayed(_parallel_tag_files)(tagger, book_name, version, path, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite) for book_name, version, path in books_info)
-
-
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
     """ Tag `lang_files`
         {'eng': [('hobbit', 'a', '../hobbit_END_a.txt'), ('prince', 'a', ...)...], ...}
     """
     print('\nStarted tagging...')
-    Parallel(n_jobs=-3)(delayed(_tag_files)(_get_correct_tagger(config, lang), books, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite) for lang, books in lang_files.items())
+    flat_files = utils.flatten_lang_files(lang_files)
+    Parallel(n_jobs=-1)(delayed(_parallel_tag_files)(book_name, version, path, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite) for book_name, version, path, lang in flat_files)
     # for lang, books in lang_files.items():
         # tagger = _get_correct_tagger(config, lang)
         # _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite)
