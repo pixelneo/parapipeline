@@ -17,6 +17,8 @@ def get_config():
     with open(path) as f:
         return json.load(f)
 
+def word_alignment_to_xml(links:list, path_src, path_tgt):
+    raise NotImplementedError('')
 
 def alignment_to_xml(links:list, path_src, path_tgt):
     """ Converts aligned documents to XML
@@ -102,13 +104,13 @@ def output_to_xml(sents_iter: Iterator[List[Dict]], id_: str, lang:str):
     return etree.tostring(doc, pretty_print=True, method='xml', encoding='unicode')
 
 def file_exists(path_original:str, out_dir:str, ext:str):
-    file_name = os.path.basename(path_original)
+    file_name = os.path.basename(path_original).lower()
     output_path = os.path.join(out_dir, f'{file_name}{ext}')
     return os.path.exists(output_path)
 
 def save_output(text:str, path_original:str, out_dir:str, ext:str):
     """ Saves `text` to `out_dir`/{filename of `path_original`} """
-    file_name = os.path.basename(path_original)
+    file_name = os.path.basename(path_original).lower()
     output_path = os.path.join(out_dir, f'{file_name}{ext}')
     # TODO gzip option?
     with open(output_path, 'w') as f:

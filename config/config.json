@@ -56,7 +56,7 @@
         "transliterate": true,
         "transliterate_before": null,
         "polyglot_code": "mk",
-        "tokenizer": "srp",
+        "tokenizer": "srp"
     },
     "slk": {
         "tagger": "udpipe",

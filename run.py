@@ -4,6 +4,7 @@
 '''
 from tag import tag_lang_files
 from align import align_book_files
+from wordalign import word_align_book_files
 import pipeline.utils as utils
 
 if __name__=='__main__':
@@ -23,3 +24,4 @@ if __name__=='__main__':
     # tag and align
     tag_lang_files(lang_files, config, args.output_dir, args.rewrite)
     align_book_files(book_files, args.output_dir, args.rewrite)
+    word_align_book_files(book_files, args.output_dir, args.rewrite)
