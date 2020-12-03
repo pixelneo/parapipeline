@@ -36,7 +36,6 @@ def _get_correct_tagger(config:dict, lang):
 def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
     """ Tag `books_info` (bookname, version, path) files. All the files are in the same `lang`.
     """
-    print('\nStarted tagging...')
     for book_name, version, path in books_info:
         if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
             # if already aligned file exist and we are not going to `rewerite` them
@@ -65,16 +64,17 @@ def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None
         else:
             utils.save_output(output_xml, path, out_dir, '_tagged.xml')
         print(f'  DONE tagging "{path}"')
-    print('DONE tagging')
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
     """ Tag `lang_files`
         {'eng': [('hobbit', 'a', '../hobbit_END_a.txt'), ('prince', 'a', ...)...], ...}
     """
+    print('\nStarted tagging...')
     for lang, books in lang_files.items():
         tagger = _get_correct_tagger(config, lang)
         _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite)
+    print('DONE tagging')
 
 
 if __name__=='__main__':
