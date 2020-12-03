@@ -66,7 +66,7 @@ def _parallel_tag_file(tagger, book_name, version, path, config, lang, enc='utf-
 def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
     """ Tag `books_info` (bookname, version, path) files. All the files are in the same `lang`.
     """
-    Parallel(n_jobs=-2)(delayed(_parallel_tag_file)(tagger, book_name, version, path, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite) for book_name, version, path in books_info)
+    Parallel(n_jobs=-2, backend='multiprocessing')(delayed(_parallel_tag_file)(tagger, book_name, version, path, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite) for book_name, version, path in books_info)
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
