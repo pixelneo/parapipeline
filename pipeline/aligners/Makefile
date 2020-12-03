@@ -7,7 +7,8 @@ down:
 build:
 	cd hunalign/src/hunalign && make
 	echo > hunalign/data/null.dic  # empty dict
-	#cd eflomal && make && makedir bin && make install -e INSTALLDIR=./bin && pip install -r requirements.txt && python setup.py install
+	pip install -r requirements.txt 
+	#cd eflomal && make && makedir bin && make install -e INSTALLDIR=./bin && python setup.py install
 
 clean:
 	rm -rf hunalign/
