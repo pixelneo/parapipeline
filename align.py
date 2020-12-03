@@ -20,17 +20,21 @@ def _align(src, tgt):
     return a.align(src, tgt)
 
 
-def align_book_files(book_files, out_dir):
+def align_book_files(book_files, out_dir, rewrite:bool = False):
     """ input like {'hobbit': [('eng', 'a', '../hobbit_ENG_a.txt'), ('pol', 'a', ...)...], ...} """
     a = hunalign.Aligner()
     print('\nStarted aligning...')
     for book, texts in book_files.items():
         pairs = itertools.combinations(texts, 2)
         for (l1, v1, file1), (l2, v2, file2) in pairs:
+            out_name = f'{book}_{l1}-{l2}_{v1}-{v2}'
+            if utils.file_exists(out_name, out_dir, '_aligned.xml') and not rewrite:
+                # if already aligned file exist and we are not going to `rewerite` them
+                print(f'  skipping pair "{file1}" and "{file2}"')
+                continue
             print(f'  aligning "{file1}" and "{file2}"')
             links = a.align_files(file1, file2)
             output_xml = utils.alignment_to_xml(links, file1, file2)
-            out_name = f'{book}_{l1}-{l2}_{v1}-{v2}'
             utils.save_output(output_xml, out_name, out_dir, '_aligned.xml')
             print(f'  DONE aligning "{file1}" and "{file2}"')
     print('DONE aligning')
@@ -47,5 +51,5 @@ if __name__=='__main__':
 
     # This is the main thing
     config = utils.get_config()
-    book_files, lang_files = utils.parse_input_files(args.input)
+    book_files, lang_files = utils.parse_input_files(args.input, config)
     align_book_files(book_files, args.output_dir)

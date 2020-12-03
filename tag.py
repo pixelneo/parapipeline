@@ -33,11 +33,15 @@ def _get_correct_tagger(config:dict, lang):
         raise ValueError(f'ERROR: tagger {tagger} does not exist')
 
 
-def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False):
+def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
     """ Tag `books_info` (bookname, version, path) files. All the files are in the same `lang`.
     """
     print('\nStarted tagging...')
     for book_name, version, path in books_info:
+        if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
+            # if already aligned file exist and we are not going to `rewerite` them
+            print(f'  skipping pair "{path}"')
+            continue
         print(f'  tagging "{path}"...')
         sents_iter = tagger.process_file(path, lang, encoding=enc)
         sentences = sents_iter
@@ -64,13 +68,13 @@ def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None
     print('DONE tagging')
 
 
-def tag_lang_files(lang_files:dict, config, out_dir, print_=False):
+def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
     """ Tag `lang_files`
         {'eng': [('hobbit', 'a', '../hobbit_END_a.txt'), ('prince', 'a', ...)...], ...}
     """
     for lang, books in lang_files.items():
         tagger = _get_correct_tagger(config, lang)
-        _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_)
+        _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_, rewrite)
 
 
 if __name__=='__main__':
@@ -84,5 +88,5 @@ if __name__=='__main__':
 
     # This is the main thing
     config = pipeline.utils.get_config()
-    book_files, lang_files = utils.parse_input_files(args.input)
+    book_files, lang_files = utils.parse_input_files(args.input, config)
     tag_lang_files(lang_files, config, args.output_dir)
