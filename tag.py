@@ -38,7 +38,7 @@ def _parallel_tag_file(tagger, book_name, version, path, config, lang, enc='utf-
     if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
         # if already aligned file exist and we are not going to `rewerite` them
         print(f'  skipping file "{path}"')
-        continue
+        return
     print(f'  tagging "{path}"...')
     sents_iter = tagger.process_file(path, lang, encoding=enc)
     sentences = sents_iter
