@@ -74,7 +74,7 @@ def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool 
     """
     for lang, books in lang_files.items():
         tagger = _get_correct_tagger(config, lang)
-        _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_, rewrite)
+        _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite)
 
 
 if __name__=='__main__':
