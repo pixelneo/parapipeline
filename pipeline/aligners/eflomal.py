@@ -41,30 +41,33 @@ class WordAligner:
 
         # get tokenized sentences for both files
         for i, path in enumerate([f1, f2]):
-            root = etree.parse(path, encoding='utf-8')
-            for p in root.get_children():
-                for s in p.get_children():
-                    tokens = []
-                    for t in s.get_children():
-                        tokens.append(t.text)
-                    sents[i].append(tokens)
+            root = etree.parse(path).getroot()
+            for t in root:
+                for p in t:
+                    for s in p:
+                        tokens = []
+                        for t in s:
+                            tokens.append(t.text)
+                        sents[i].append(tokens)
 
-        root = etree.parse(align, encoding='utf-8')
-        for link in root.get_children():
+        root = etree.parse(align).getroot()
+        for link in root:
             for i, ind_text in enumerate(link.get('xtargets').split(';')):
-                indices[i].append(ind_text.split(' '))
+                indices[i].append([int(a) for a in ind_text.strip().split(' ') if a != ''])
 
         output = []
-        for os1, os2 in indices:
+        for os1, os2 in zip(*indices):
             line = []
             for i, ind_list in enumerate([os1, os2]):
                 orig_ends = []
                 curr_id = 0
                 for l in ind_list:
-                    line.extend(sents[l])
-                    orig_ends.append(curr_id + len(sents[l]))
+                    line.extend(sents[i][l])
+                    orig_ends.append(curr_id + len(sents[i][l]))
                 original_sents_end[i].append(orig_ends)
                 line.append('|||')  # separator for eflomal
+            if line[-1] == '|||':
+                line.pop(-1)
             output.append(' '.join(line))
         return '\n'.join(output), original_sents_end
 
@@ -84,5 +87,6 @@ class WordAligner:
 
 if __name__=='__main__':
     a = WordAligner()
-    print(a._get_sents_from_xml(TODO))  # TODO
+    output, orig = a._get_sents_from_xml('../outputs/Guide_CES.txt_tagged.xml', '../outputs/Guide_DEU.txt_tagged.xml', '../outputs/guide_ces-deu_None-None_aligned.xml')
+    print(output)
 
