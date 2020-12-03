@@ -16,7 +16,8 @@ if __name__=='__main__':
     args = parser.parse_args()
 
     config = utils.get_config()
-    book_files, lang_files = utils.parse_input_files(args.input)
+    book_files, lang_files = utils.parse_input_files(args.input, config)
+
 
     # tag and align
     tag_lang_files(lang_files, config, args.output_dir)

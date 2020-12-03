@@ -36,11 +36,14 @@ def _get_correct_tagger(config:dict, lang):
 def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False):
     """ Tag `books_info` (bookname, version, path) files. All the files are in the same `lang`.
     """
+    print('\nStarted tagging...')
     for book_name, version, path in books_info:
+        print(f'  tagging "{path}"...')
         sents_iter = tagger.process_file(path, lang, encoding=enc)
         sentences = sents_iter
 
         if config[lang]['transliterate']:
+            print(f'    transliterating "{path}"...')
             polyglot_code = utils.get_polyglot_lang_code(config, lang)
             sentences = []
             for s in sents_iter:
@@ -50,12 +53,15 @@ def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None
                     w['lemma_trans'] = ''.join(transliterate.transliterate(w['lemma'], polyglot_code))
                     sent.append(w)
                 sentences.append(sent)
+            print(f'    DONE transliterating "{path}"')
         output_xml = utils.output_to_xml(sentences, os.path.basename(path), lang)  # TODO id_ if files given as list/by file
 
         if print_:
             print(output_xml)
         else:
             utils.save_output(output_xml, path, out_dir, '_tagged.xml')
+        print(f'  DONE tagging "{path}"')
+    print('DONE tagging')
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False):

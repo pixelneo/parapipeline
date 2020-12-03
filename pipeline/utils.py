@@ -110,7 +110,7 @@ def save_output(text:str, path_original:str, out_dir:str, ext:str):
     with open(output_path, 'w') as f:
         f.write(text)
 
-def parse_input_files(files:list):
+def parse_input_files(files:list, config):
     """ Gets list of files and returns dict with book keys, and lang, version list of values
 
     Args:
@@ -134,6 +134,9 @@ def parse_input_files(files:list):
         book_name_lower = book_name.lower()
 
         lang = split[1].lower()
+        if lang not in config:
+            print('WARNING: language code "{lang}" is not in the config')
+            continue
 
         version = None
         if len(split) == 3:
