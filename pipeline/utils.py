@@ -139,7 +139,7 @@ def parse_input_files(files:list, config):
 
         lang = split[1].lower()
         if lang not in config:
-            print('WARNING: language code "{lang}" is not in the config')
+            print(f'WARNING: language code "{lang}" is not in the config')
             continue
 
         version = None
