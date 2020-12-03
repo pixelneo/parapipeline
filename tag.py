@@ -40,7 +40,7 @@ def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None
     for book_name, version, path in books_info:
         if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
             # if already aligned file exist and we are not going to `rewerite` them
-            print(f'  skipping pair "{path}"')
+            print(f'  skipping file "{path}"')
             continue
         print(f'  tagging "{path}"...')
         sents_iter = tagger.process_file(path, lang, encoding=enc)
