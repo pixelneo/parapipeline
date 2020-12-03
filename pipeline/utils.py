@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-'''
+"""
     Author: Ondrej Mekota o(at)mkta.eu
-'''
+"""
 
 import os
 import json
@@ -101,6 +101,10 @@ def output_to_xml(sents_iter: Iterator[List[Dict]], id_: str, lang:str):
 
     return etree.tostring(doc, pretty_print=True, method='xml', encoding='unicode')
 
+def file_exists(path_original:str, out_dir:str, ext:str):
+    file_name = os.path.basename(path_original)
+    output_path = os.path.join(out_dir, f'{file_name}{ext}')
+    return os.path.exists(output_path)
 
 def save_output(text:str, path_original:str, out_dir:str, ext:str):
     """ Saves `text` to `out_dir`/{filename of `path_original`} """
@@ -110,7 +114,7 @@ def save_output(text:str, path_original:str, out_dir:str, ext:str):
     with open(output_path, 'w') as f:
         f.write(text)
 
-def parse_input_files(files:list):
+def parse_input_files(files:list, config):
     """ Gets list of files and returns dict with book keys, and lang, version list of values
 
     Args:
@@ -134,9 +138,12 @@ def parse_input_files(files:list):
         book_name_lower = book_name.lower()
 
         lang = split[1].lower()
+        if lang not in config:
+            print(f'WARNING: language code "{lang}" is not in the config')
+            continue
 
         version = None
-        if len(split) == 3:
+        if len(split) >= 3:
             version = split[2]
 
         if book_name_lower not in book_files:
@@ -165,6 +172,16 @@ def book_files_to_lang_files(book_files:dict):
                 lang_files[lang] = []
             lang_files[lang].append((book, version, file))
     return lang_files
+
+
+def flatten_lang_files(lang_files:dict):
+    """ Convert lang_files (dict with lang keys, book values) 
+    to list of files"""
+    out = []
+    for lang, books in lang_files.items():
+        for book_name, version, path in books:
+            out.append((book_name, version, path, lang))
+    return out
 
 
 def get_polyglot_lang_code(config:dict, lang:str):

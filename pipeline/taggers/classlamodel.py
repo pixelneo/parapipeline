@@ -10,7 +10,7 @@ import classla
 
 from .base import BaseTagger
 
-FORMATS = ["conllu", "vertical", "horizontal", "matxin", "epe", None]
+FORMATS = ['conllu', 'vertical', 'horizontal', 'matxin', 'epe', None]
 FILE_PATH = os.path.dirname(__file__)
 
 
@@ -25,7 +25,7 @@ class ClasslaTagger(BaseTagger):
         if lang not in self.models:
             lang_code = self._lang2modelname(lang)
             self.models[lang] = classla.Pipeline(
-                lang=lang_code, models_dir=os.path.join(FILE_PATH, "classla", "models")
+                lang=lang_code, models_dir=os.path.join(FILE_PATH, 'classla', 'models')
             )
 
     def process(self, text: str, lang: str, in_format=None, out_format=None):
@@ -45,18 +45,18 @@ class ClasslaTagger(BaseTagger):
         """
         self._check_model(lang)
         nlp = self.models[lang]
-        for s_raw in text.strip().split("\n"):
+        for s_raw in text.splitlines():
             s = nlp(s_raw)
             res = []
             for s2 in s.sentences:  # sentence segmentation is performed
                 for t in s2.tokens:
                     for w in t.words:
                         src = (
-                            ("word", w.text),
-                            ("lemma", w.lemma),
-                            ("upos", w.upos),
-                            ("xpos", w.xpos),
-                            ("feats", w.feats),
+                            ('word', w.text),
+                            ('lemma', w.lemma),
+                            ('upos', w.upos),
+                            ('xpos', w.xpos),
+                            ('feats', w.feats),
                         )
                         a = [(k, v) for k, v in src if v is not None]
                         res.append(dict(a))
@@ -66,7 +66,7 @@ class ClasslaTagger(BaseTagger):
         self,
         path: str,
         lang: str,
-        encoding: str = "utf-8",
+        encoding: str = 'utf-8',
         in_format: str = None,
         out_format: str = None,
     ):
@@ -96,5 +96,5 @@ class ClasslaTagger(BaseTagger):
 
 def save_output(text: str, path: str, extension):
     """ Save `text` to `path`.`extension`. """
-    with open(f"{path}.{extension}", "w") as f:
+    with open(f'{path}.{extension}', 'w') as f:
         f.write(text)

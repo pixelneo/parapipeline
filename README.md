@@ -22,7 +22,7 @@ All scripts have the same arguments as `run`.
 ### Input
 All scripts expect line delimited sentences in utf-8 encoded files.
 
-The name of these files is `NAME_LANG_[_ID][.ext]`, where `NAME` is arbitrary text not containing `_`, `LANG` is iso-639-3 language code, 
+The name of these files is `NAME_LANG[_ID][.ext]`, where `NAME` is arbitrary text not containing `_`, `LANG` is iso-639-3 language code, 
 optional `ID` distinguished between more variants of the same text (e.g. different translations), `.ext` is also optional.
 
 See files in `examples` folder for some example input files.

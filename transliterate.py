@@ -35,5 +35,5 @@ if __name__=='__main__':
 
     # This is the main thing
     config = utils.get_config()
-    book_files, lang_files = utils.parse_input_files(args.input)
+    book_files, lang_files = utils.parse_input_files(args.input, config)
     transliterate_files(lang_files, config, args.output_dir)

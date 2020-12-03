@@ -10,7 +10,7 @@ from corpy.udpipe import Model
 
 from .base import BaseTagger
 
-FORMATS = ["conllu", "vertical", "horizontal", "matxin", "epe", None]
+FORMATS = ['conllu', 'vertical', 'horizontal', 'matxin', 'epe', None]
 FILE_PATH = os.path.dirname(__file__)
 
 
@@ -38,7 +38,7 @@ class UDPipeTagger(BaseTagger):
         """ Check if model exists, is loaded, and load it if needed. """
         if lang not in self.models:
             model_path = os.path.join(
-                FILE_PATH, "udpipe", "models", self._lang2modelname(lang)
+                FILE_PATH, 'udpipe', 'models', self._lang2modelname(lang)
             )
             self.models[lang] = Model(model_path)
 
@@ -66,28 +66,27 @@ class UDPipeTagger(BaseTagger):
         """
         self._check_model(lang)
         if in_format not in FORMATS:
-            if in_format != "split":
-                warnings.warn(f"in_format: {in_format} does not exist, using default.")
+            if in_format != 'split':
+                warnings.warn(f'in_format: {in_format} does not exist, using default.')
             in_format = None
         if out_format not in FORMATS:
-            warnings.warn(f"out_format: {out_format} does not exist, using default.")
+            warnings.warn(f'out_format: {out_format} does not exist, using default.')
             out_format = None
 
         if out_format is None:
-            for s in self.models[lang].process(
-                text, parse=False, in_format=in_format, out_format=out_format
-            ):
+            for line in text.splitlines():
                 res = []
-                for w in s.words[1:]:  # index 0 always contains <root>
-                    res.append(
-                        {
-                            "word": w.form,
-                            "lemma": w.lemma,
-                            "upos": w.upostag,
-                            "xpos": w.xpostag,
-                            "feats": w.feats,
-                        }
-                    )
+                for s in self.models[lang].process(line, parse=False, in_format=in_format, out_format=out_format):
+                    for w in s.words[1:]:  # index 0 always contains <root>
+                        res.append(
+                            {
+                                'word': w.form,
+                                'lemma': w.lemma,
+                                'upos': w.upostag,
+                                'xpos': w.xpostag,
+                                'feats': w.feats,
+                            }
+                        )
                 yield res
         else:
             return list(
@@ -100,7 +99,7 @@ class UDPipeTagger(BaseTagger):
         self,
         path: str,
         lang: str,
-        encoding: str = "utf-8",
+        encoding: str = 'utf-8',
         in_format: str = None,
         out_format: str = None,
     ):
@@ -150,6 +149,6 @@ class UDPipeTagger(BaseTagger):
 
 
 def save_output(text: str, path: str, extension):
-    """ Save `text` to `path`.`extension`. """
-    with open(f"{path}.{extension}", "w") as f:
+    ''' Save `text` to `path`.`extension`. '''
+    with open(f'{path}.{extension}', 'w') as f:
         f.write(text)

@@ -5,7 +5,7 @@
 import os
 
 FILE_PATH = os.path.dirname(__file__)
-os.environ["POLYGLOT_DATA_PATH"] = FILE_PATH
+os.environ['POLYGLOT_DATA_PATH'] = FILE_PATH
 
 import polyglot
 from polyglot.text import Text
@@ -16,13 +16,13 @@ def transliterate(text: str, polyglot_lang_code: str):
     If certain token cannot be transliterated, use the original token."""
     lang = polyglot_lang_code
     p_text = polyglot.text.Text(text, lang)
-    transliterated = p_text.transliterate("en")
+    transliterated = p_text.transliterate('en')
     result = [
-        w_new if w_new != "" else w_orig
+        w_new if w_new != '' else w_orig
         for w_orig, w_new in zip(p_text.words, transliterated)
     ]
     return result
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     pass
