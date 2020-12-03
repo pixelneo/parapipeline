@@ -6,6 +6,8 @@
 import os
 import warnings
 
+from joblib import Parallel, delayed
+
 import pipeline
 from pipeline.taggers.udpipe import UDPipeTagger
 from pipeline.taggers.treetagger import TreeTagger
@@ -32,38 +34,39 @@ def _get_correct_tagger(config:dict, lang):
     else:
         raise ValueError(f'ERROR: tagger {tagger} does not exist')
 
+def _parallel_tag_file(tagger, book_name, version, path, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
+    if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
+        # if already aligned file exist and we are not going to `rewerite` them
+        print(f'  skipping file "{path}"')
+        continue
+    print(f'  tagging "{path}"...')
+    sents_iter = tagger.process_file(path, lang, encoding=enc)
+    sentences = sents_iter
+
+    if config[lang]['transliterate']:
+        print(f'    transliterating "{path}"...')
+        polyglot_code = utils.get_polyglot_lang_code(config, lang)
+        sentences = []
+        for s in sents_iter:
+            sent = []
+            for w in s:
+                w['word_trans'] = ''.join(transliterate.transliterate(w['word'], polyglot_code))
+                w['lemma_trans'] = ''.join(transliterate.transliterate(w['lemma'], polyglot_code))
+                sent.append(w)
+            sentences.append(sent)
+        print(f'    DONE transliterating "{path}"')
+    output_xml = utils.output_to_xml(sentences, os.path.basename(path), lang)  # TODO id_ if files given as list/by file
+
+    if print_:
+        print(output_xml)
+    else:
+        utils.save_output(output_xml, path, out_dir, '_tagged.xml')
+    print(f'  DONE tagging "{path}"')
 
 def _tag_files(tagger, books_info:tuple, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
     """ Tag `books_info` (bookname, version, path) files. All the files are in the same `lang`.
     """
-    for book_name, version, path in books_info:
-        if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
-            # if already aligned file exist and we are not going to `rewerite` them
-            print(f'  skipping file "{path}"')
-            continue
-        print(f'  tagging "{path}"...')
-        sents_iter = tagger.process_file(path, lang, encoding=enc)
-        sentences = sents_iter
-
-        if config[lang]['transliterate']:
-            print(f'    transliterating "{path}"...')
-            polyglot_code = utils.get_polyglot_lang_code(config, lang)
-            sentences = []
-            for s in sents_iter:
-                sent = []
-                for w in s:
-                    w['word_trans'] = ''.join(transliterate.transliterate(w['word'], polyglot_code))
-                    w['lemma_trans'] = ''.join(transliterate.transliterate(w['lemma'], polyglot_code))
-                    sent.append(w)
-                sentences.append(sent)
-            print(f'    DONE transliterating "{path}"')
-        output_xml = utils.output_to_xml(sentences, os.path.basename(path), lang)  # TODO id_ if files given as list/by file
-
-        if print_:
-            print(output_xml)
-        else:
-            utils.save_output(output_xml, path, out_dir, '_tagged.xml')
-        print(f'  DONE tagging "{path}"')
+    Parallel(n_jobs=4)(delayed(_parallel_tag_file)(tagger, book_name, version, path, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite))  for book_name, version, path in books_info)
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
