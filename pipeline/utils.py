@@ -143,7 +143,7 @@ def parse_input_files(files:list, config):
             continue
 
         version = None
-        if len(split) == 3:
+        if len(split) >= 3:
             version = split[2]
 
         if book_name_lower not in book_files:
