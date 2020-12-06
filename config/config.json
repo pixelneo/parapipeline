@@ -23,7 +23,7 @@
     "hrv": {
         "tagger": "udpipe",
         "model": "croatian-set-ud-2.5-191206.udpipe",
-        "transliterate": true,
+        "transliterate": false,
         "transliterate_before": false,
         "polyglot_code": "hr"
     },
