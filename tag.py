@@ -6,6 +6,7 @@
 import os
 import warnings
 import time
+import sys
 
 from joblib import Parallel, delayed
 
@@ -69,8 +70,10 @@ def _parallel_tag_files(book_name, version, path, config, lang, enc='utf-8', out
         print(f'  DONE tagging "{path}"')
     except Exception as e:
         print('------------ error ---------------:', path)
-        time.sleep(2)
-        exit()
+        with open('f2', 'w') as f:
+            f.write(path)
+        time.sleep(1)
+        raise e
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
