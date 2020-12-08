@@ -5,7 +5,6 @@
 
 import os
 import warnings
-import time
 import sys
 
 from joblib import Parallel, delayed
@@ -35,7 +34,7 @@ def _get_correct_tagger(config:dict, lang):
     elif tagger == 'classla':
         return ClasslaTagger(config)
     else:
-        res = 'Lagger "{}" does not exist for langcode "{}"'.format(tagger, lang)
+        res = 'Tagger "{}" does not exist for langcode "{}"'.format(tagger, lang)
         raise ValueError(res)
 
 

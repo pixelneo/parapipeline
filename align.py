@@ -4,6 +4,7 @@
 '''
 
 import itertools
+import sys
 
 from pipeline.aligners import hunalign
 from pipeline import utils
@@ -32,11 +33,18 @@ def align_book_files(book_files, out_dir, rewrite:bool = False):
                 # if already aligned file exist and we are not going to `rewerite` them
                 print(f'  skipping pair "{file1}" and "{file2}"')
                 continue
-            print(f'  aligning "{file1}" and "{file2}"')
-            links = a.align_files(file1, file2)
-            output_xml = utils.alignment_to_xml(links, file1, file2)
-            utils.save_output(output_xml, out_name, out_dir, '_aligned.xml')
-            print(f'  DONE aligning "{file1}" and "{file2}"')
+            try:
+                print(f'  aligning "{file1}" and "{file2}"')
+                links = a.align_files(file1, file2)
+                output_xml = utils.alignment_to_xml(links, file1, file2)
+                utils.save_output(output_xml, out_name, out_dir, '_aligned.xml')
+                print(f'  DONE aligning "{file1}" and "{file2}"')
+            except Exception as e:
+                print('ERROR ', file=sys.stderr)
+                print('   ', str(e), file=sys.stderr)
+                continue
+
+
     print('DONE aligning')
 
 
