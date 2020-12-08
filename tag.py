@@ -69,11 +69,8 @@ def _parallel_tag_files(book_name, version, path, config, lang, enc='utf-8', out
             utils.save_output(output_xml, path, out_dir, '_tagged.xml')
         print(f'  DONE tagging "{path}"')
     except Exception as e:
-        print('------------ error ---------------:', path)
-        with open('f2', 'w') as f:
-            f.write(path)
-        time.sleep(1)
-        raise e
+        print(f'ERROR with file {path}, skipping', file=sys.stderr)
+        print(str(e), file=sys.stderr)
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
