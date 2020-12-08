@@ -21,7 +21,7 @@ import pipeline.utils as utils
 
 def _get_correct_tagger(config:dict, lang):
     if lang not in config:
-        res = 'Language code {} is not in the config'.format(lang)
+        res = 'Language code "{}" is not in the config'.format(lang)
         raise ValueError(res)
 
     tagger = config[lang]['tagger']
@@ -35,7 +35,7 @@ def _get_correct_tagger(config:dict, lang):
     elif tagger == 'classla':
         return ClasslaTagger(config)
     else:
-        res = 'ERROR: tagger {} does not exist for langcode {}'.format(tagger, lang)
+        res = 'Lagger "{}" does not exist for langcode "{}"'.format(tagger, lang)
         raise ValueError(res)
 
 
@@ -72,7 +72,7 @@ def _parallel_tag_files(book_name, version, path, config, lang, enc='utf-8', out
         print(f'  DONE tagging "{path}"')
     except Exception as e:
         print(f'ERROR with file {path}, skipping', file=sys.stderr)
-        print(str(e), file=sys.stderr)
+        print('   ', str(e), file=sys.stderr)
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
