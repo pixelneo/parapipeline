@@ -81,27 +81,26 @@ class WordAligner:
 
         try:
             fd0, in_path = tempfile.mkstemp()
+            fd1, out_path = tempfile.mkstemp()
             text, original_sents_end = self._get_sents_from_xml(f1_tokenized, f2_tokenized, sent_alignment)
             with open(fd0, 'w') as f:
                 f.write(text)
 
-            args = ['-i', in_path]
+            args = ['-i', in_path, '-f', out_path, '--overwrite']
             p = subprocess.run(
                 [os.path.join(FILE_PATH, 'eflomal/align.py'), *args],
                 capture_output=True,
                 encoding='utf-8',
             )
-            print(p.stderr)
-            output = p.stdout
-            return output
 
         finally:
-            #os.remove(in_path)
-            pass
+            os.remove(in_path)
+            print(out_path)
+            #os.remove(out_path)
 
 
 if __name__=='__main__':
     a = WordAligner()
     #output, orig = a._get_sents_from_xml('../outputs/Guide_CES.txt_tagged.xml', '../outputs/Guide_DEU.txt_tagged.xml', '../outputs/guide_ces-deu_None-None_aligned.xml')
-    print(a.align_files('../outputs/Guide_CES.txt_tagged.xml', '../outputs/Guide_DEU.txt_tagged.xml', '../outputs/guide_ces-deu_None-None_aligned.xml'))
+    print(a.align_files('../outputs-test/code_eng.txt_tagged.xml', '../outputs-test/code_slk.txt_tagged.xml', '../outputs-test/code_eng-slk_none-none_aligned.xml'))
 
