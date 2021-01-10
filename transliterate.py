@@ -4,6 +4,7 @@
 '''
 
 import os
+import logging
 
 import pipeline
 from pipeline.transliterators import transliterate
