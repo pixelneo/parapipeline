@@ -14,21 +14,10 @@ from pipeline.aligners import eflomal
 from pipeline import utils
 
 
-def _align_files(path_src, path_tgt):
-    a = hunalign.Aligner()
-    links = a.align_files(path_src, path_tgt)
-    return utils.alignment_to_xml(links, path_src, path_tgt)
-
-
-def _align(src, tgt):
-    a = hunalign.Aligner()
-    return a.align(src, tgt)
-
-
 def word_align_book_files(book_files, out_dir, rewrite:bool = False):
     """ input like {'hobbit': [('eng', 'a', '../hobbit_ENG_a.txt'), ('pol', 'a', ...)...], ...} """
     a = eflomal.WordAligner()
-    logging.info('\nStarted word aligning...')
+    logging.info('Started word aligning...')
     for book, texts in book_files.items():
         pairs = itertools.combinations(texts, 2)
         for (l1, v1, file1), (l2, v2, file2) in pairs:
@@ -69,4 +58,4 @@ if __name__=='__main__':
     # This is the main thing
     config = utils.get_config()
     book_files, lang_files = utils.parse_input_files(args.input, config)
-    align_book_files(book_files, args.output_dir)
+    word_align_book_files(book_files, args.output_dir)

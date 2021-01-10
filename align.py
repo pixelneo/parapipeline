@@ -24,7 +24,7 @@ def _align(src, tgt):
 def align_book_files(book_files, out_dir, rewrite:bool = False):
     """ input like {'hobbit': [('eng', 'a', '../hobbit_ENG_a.txt'), ('pol', 'a', ...)...], ...} """
     a = hunalign.Aligner()
-    logging.info('\nStarted aligning...')
+    logging.info('Started aligning...')
     for book, texts in book_files.items():
         pairs = itertools.combinations(texts, 2)
         for (l1, v1, file1), (l2, v2, file2) in pairs:
