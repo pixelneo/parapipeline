@@ -5,6 +5,8 @@
 
 import os
 import sys
+import tempfile
+import subprocess
 
 from lxml import etree
 
@@ -58,6 +60,8 @@ class WordAligner:
         output = []
         for os1, os2 in zip(*indices):
             line = []
+            if len(os1) == 0 or len(os2) == 0:
+                continue
             for i, ind_list in enumerate([os1, os2]):
                 orig_ends = []
                 curr_id = 0
@@ -74,12 +78,10 @@ class WordAligner:
 
     def align_files(self, f1_tokenized, f2_tokenized, sent_alignment):
         # return links
-        raise NotImplementedError()
 
         try:
             fd0, in_path = tempfile.mkstemp()
-            fd1, out_path = tempfile.mkstemp()
-            text, original_sents_end = self._get_sents_from_xml(f1_tokenized, f2_tokenized, sent_alignment, out)
+            text, original_sents_end = self._get_sents_from_xml(f1_tokenized, f2_tokenized, sent_alignment)
             with open(fd0, 'w') as f:
                 f.write(text)
 
@@ -89,12 +91,13 @@ class WordAligner:
                 capture_output=True,
                 encoding='utf-8',
             )
+            print(p.stderr)
             output = p.stdout
             return output
 
         finally:
-            os.remove(in_path)
-            os.remove(out_path)
+            #os.remove(in_path)
+            pass
 
 
 if __name__=='__main__':
