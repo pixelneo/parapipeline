@@ -32,7 +32,7 @@ class WordAligner:
                 tokens are space separated, there is '|||' on each line,
                 separating the two texts.
             -   tuple, contains lists for each text with original sentence endings
-                e.g. ([[4,9],...],[...]) = first text's first sentence's tokens are 0,1,2,3.
+                e.g. ([[4,9],...],[...]) = first text's first sentence's tokens are 0,1,2,3, and its second sentence's tokens are 0..8.
 
         """
         sents = ([], [])
@@ -77,17 +77,28 @@ class WordAligner:
         raise NotImplementedError()
 
         try:
-            fds, out = tempfile.mkstemp()
-            self._convert_input(f1_tokenized, f2_tokenized, sent_alignment, out)
+            fd0, in_path = tempfile.mkstemp()
+            fd1, out_path = tempfile.mkstemp()
+            text, original_sents_end = self._get_sents_from_xml(f1_tokenized, f2_tokenized, sent_alignment, out)
+            with open(fd0, 'w') as f:
+                f.write(text)
+
+            args = ['-i', in_path]
+            p = subprocess.run(
+                [os.path.join(FILE_PATH, 'eflomal/align.py'), *args],
+                capture_output=True,
+                encoding='utf-8',
+            )
+            output = p.stdout
+            return output
 
         finally:
-            os.remove(src_file)
-            os.remove(tgt_file)
+            os.remove(in_path)
+            os.remove(out_path)
 
 
 if __name__=='__main__':
     a = WordAligner()
-    output, orig = a._get_sents_from_xml('../outputs/Guide_CES.txt_tagged.xml', '../outputs/Guide_DEU.txt_tagged.xml', '../outputs/guide_ces-deu_None-None_aligned.xml')
-    print(orig)
-    print(output[:10])
+    #output, orig = a._get_sents_from_xml('../outputs/Guide_CES.txt_tagged.xml', '../outputs/Guide_DEU.txt_tagged.xml', '../outputs/guide_ces-deu_None-None_aligned.xml')
+    print(a.align_files('../outputs/Guide_CES.txt_tagged.xml', '../outputs/Guide_DEU.txt_tagged.xml', '../outputs/guide_ces-deu_None-None_aligned.xml'))
 

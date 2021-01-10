@@ -5,6 +5,7 @@
 
 import itertools
 import logging
+import os
 
 #from joblib import Parallel, delayed
 
@@ -22,6 +23,10 @@ def word_align_book_files(book_files, out_dir, rewrite:bool = False):
         pairs = itertools.combinations(texts, 2)
         for (l1, v1, file1), (l2, v2, file2) in pairs:
             out_name = f'{book}_{l1}-{l2}_{v1}-{v2}'
+            sent_aligned_path = utils.out_path(out_name, out_dir, '_aligned.xml')
+            tagged_file1 = utils.out_path(file1, out_dir, '_tagged.xml')
+            tagged_file2 = utils.out_path(file2, out_dir, '_tagged.xml')
+
             if utils.file_exists(out_name, out_dir, '_word-aligned.xml') and not rewrite:
                 # if already aligned file exist and we are not going to `rewerite` them
                 logging.warning(f'skipping pair "{file1}" and "{file2}"')
@@ -39,7 +44,7 @@ def word_align_book_files(book_files, out_dir, rewrite:bool = False):
 
 
             logging.info(f'word-aligning "{file1}" and "{file2}"')
-            links = a.align_files(file1, file2)
+            links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
             output_xml = utils.word_alignment_to_xml(links, file1, file2)
             utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
             logging.info(f'DONE word aligning "{file1}" and "{file2}"')

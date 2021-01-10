@@ -108,6 +108,11 @@ def file_exists(path_original:str, out_dir:str, ext:str):
     output_path = os.path.join(out_dir, f'{file_name}{ext}')
     return os.path.exists(output_path)
 
+def out_path(path_original:str, out_dir:str, ext:str):
+    file_name = os.path.basename(path_original).lower()
+    output_path = os.path.join(out_dir, f'{file_name}{ext}')
+    return output_path
+
 def save_output(text:str, path_original:str, out_dir:str, ext:str):
     """ Saves `text` to `out_dir`/{filename of `path_original`} """
     file_name = os.path.basename(path_original).lower()
