@@ -23,7 +23,7 @@ class WordAligner:
 
         Args:
             f1: xml file path, tokenized
-            f2: cml file path, tokenized
+            f2: xml file path, tokenized
             align:
 
         Returns:
@@ -88,5 +88,6 @@ class WordAligner:
 if __name__=='__main__':
     a = WordAligner()
     output, orig = a._get_sents_from_xml('../outputs/Guide_CES.txt_tagged.xml', '../outputs/Guide_DEU.txt_tagged.xml', '../outputs/guide_ces-deu_None-None_aligned.xml')
-    print(output)
+    print(orig)
+    print(output[:10])
 
