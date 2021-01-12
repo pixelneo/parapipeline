@@ -60,7 +60,7 @@ class WordAligner:
                 indices[i].append([int(a) for a in ind_text.strip().split(' ') if a != ''])
                 it += 1
             for i in range(it):
-                if len(indices[i]) == 0:  # if there is an unaligned sentece
+                if len(indices[i][-1]) == 0:  # if there is an unaligned sentece
                     for j in range(it):  # remove all such links
                         indices[j].pop(-1)
                     break
@@ -101,6 +101,7 @@ class WordAligner:
         # TODO iterate zip(sentence_indices), IGNORE such where at least of the lists is len()==0
 
         # TODO  test last commit
+        pass
 
 
 
@@ -131,7 +132,7 @@ class WordAligner:
             )
             with open(fd1) as f:
                 links = [l.strip().split(' ') for l in f.readlines()]
-            self._convert_eflomal_output(links, sentence_indices, original_sents_end)
+            self._convert_eflomal_output(links, sent_indices, original_sents_end)
 
         finally:
             os.remove(in_path)
