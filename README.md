@@ -1,7 +1,7 @@
 # parapipeline 
 **In development, all of this can change.**
 
-Parapipeline is a pipeline for POS tagging of texts in multiple languages, sentence alignment, and transliteration.
+Parapipeline is a pipeline for POS tagging of texts in multiple languages, sentence alignment, word alignment, and transliteration.
 
 ## Installation
 Make sure you have following programs installed
@@ -15,7 +15,7 @@ Run `git lfs install`.
 Run `make` to install necessary packages, compile taggers, aligners, download models, ...
 
 ## Usage
-There are scripts `tag`, `transliterate`, `align` and `run`
+There are scripts `tag`, `transliterate`, `align`, `wordalign` and `run`
 
 All scripts have the same arguments as `run`.
 
@@ -30,7 +30,7 @@ See files in `examples` folder for some example input files.
 ### Output
 `run` script outputs tagged texts in XML files. 
 
-And when possible also sentence alignment file in XML. 
+And when possible also sentence and word alignment files in XML. 
 This file contains the alignment.
 
 See `examples/outputs` for example output of this pipeline.
@@ -94,6 +94,7 @@ You can also add scripts to download more models and so on.
 - Hunalign: D. Varga, L. Németh, P. Halácsy, A. Kornai, V. Trón, V. Nagy (2005). Parallel corpora for medium density languages In Proceedings of the RANLP 2005, pages 590-596.
 - BTagger: https://github.com/agesmundo/BTagger
 - Georgian Treetagger model comes from here: http://corpus.leeds.ac.uk/serge/mocky/ka.par
+- Eflomal: https://github.com/robertostling/eflomal
 
 # License
 CC BY-NC-SA
