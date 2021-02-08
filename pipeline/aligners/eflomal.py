@@ -7,6 +7,7 @@ import os
 import sys
 import tempfile
 import subprocess
+import re
 
 from lxml import etree
 
@@ -105,7 +106,7 @@ class WordAligner:
         # TODO  test last commit
         word_alignment = []  # list of strings for the pair of docs
         for src_sent_id, tgt_sent_id, word_links, src_sent_len, tgt_sent_len in zip(*sentence_indices, links, *original_sents_end):
-            if len(src_sent_id) == 0 or len(tgt_sent_id) == 0 or word_links.strip() == '':
+            if len(src_sent_id) == 0 or len(tgt_sent_id) == 0 or word_links[0].strip() == '':
                 continue  # there is no alignment here
 
             # one sentence links
@@ -118,7 +119,8 @@ class WordAligner:
             src_sent_current_index = 0
             tgt_sent_current_index = 0
 
-            for s, t in (map(int, a.strip().split('-')) for a in word_links):
+            for link in (a.strip().split('-') for a in word_links):
+                s, t = map(int, link)
                 one_link = []
                 try:
                     if s < src_sent_end[src_sent_current_index]:
