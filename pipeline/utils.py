@@ -17,19 +17,16 @@ def get_config():
     with open(path) as f:
         return json.load(f)
 
-def word_alignment_to_xml(links:list, path_src, path_tgt):
+def word_alignment_to_xml(word_alignment:list, path_src, path_tgt):
     raise NotImplementedError('')
 
-    # TODO: this is copied from sent align.
     src_name = os.path.basename(path_src)
     tgt_name = os.path.basename(path_tgt)
-    doc = etree.Element('linkGrp', attrib={'toDoc': src_name, 'fromDoc': tgt_name})
+    doc = etree.Element('linkGrp', attrib={'toDoc': src_name, 'fromDoc': tgt_name, 'type': 'word-alignment'})
 
-    for (t0, t1), from_, to_ in links:
+    for l in word_alignment:
         attr = {
-                'type': f'{t0}-{t1}',
-                'xtargets': f'{" ".join(map(str, from_))};{" ".join(map(str, to_))}',
-                'status': 'null'  # TODO what should be here
+                'xtargets': l
         }
         link = etree.SubElement(doc, 'link', attrib=attr)
     return etree.tostring(doc, pretty_print=True, method='xml', encoding='unicode')

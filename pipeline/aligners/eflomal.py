@@ -94,8 +94,11 @@ class WordAligner:
 
         Args:
             links: list of links per aligned sentences [['0-1', '3-2'], ...]
-            sentence_indices: 
-            original_sents_end: number of words per each sentence
+            sentence_indices: list of lists representing indices of sentences used in aligned blocks
+            original_sents_end: list of lists ... number of words per each sentence in each aligned block
+
+        Returns:
+            list of strings representing word alignment per each aligned sentence
 
         """
 
@@ -147,7 +150,7 @@ class WordAligner:
             sent_alignment: XML alignment
 
         Returns:
-            
+            list of strings representing word alignment per each aligned sentence
 
         """
         try:
@@ -165,7 +168,7 @@ class WordAligner:
             )
             with open(fd1) as f:
                 links = [l.strip().split(' ') for l in f.readlines()]
-            self._convert_eflomal_output(links, sent_indices, original_sents_end)
+            return self._convert_eflomal_output(links, sent_indices, original_sents_end)
 
         finally:
             os.remove(in_path)
