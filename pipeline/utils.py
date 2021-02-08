@@ -12,7 +12,8 @@ from lxml import etree
 FILE_PATH = os.path.dirname(__file__)
 
 def decode(string):
-    return str(string).decode('utf-8', 'backslashreplace')
+    a = str(string)
+    return a.encode('utf-8', 'backslashreplace').decode('utf-8', 'backslashreplace')
 
 def get_config():
     """ Load json config file and return it in dict. """
