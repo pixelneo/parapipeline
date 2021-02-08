@@ -18,9 +18,13 @@ def word_align(input_, a):
     tagged_file1, tagged_file2, sent_aligned_path, file1, file2, out_name, out_dir = input_
     logging.info(f'word-aligning "{file1}" and "{file2}"')
 
-    links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
-    output_xml = utils.word_alignment_to_xml(links, file1, file2)
-    utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
+    try:
+        links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
+        output_xml = utils.word_alignment_to_xml(links, file1, file2)
+        utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
+    except Exception as e:
+        logging.info(f'Error with alignment of "{file1}" and "{file2}"')
+        raise e
     logging.info(f'DONE word aligning "{file1}" and "{file2}"')
 
 

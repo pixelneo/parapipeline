@@ -105,7 +105,7 @@ class WordAligner:
         # TODO  test last commit
         word_alignment = []  # list of strings for the pair of docs
         for src_sent_id, tgt_sent_id, word_links, src_sent_len, tgt_sent_len in zip(*sentence_indices, links, *original_sents_end):
-            if len(src_sent_id) == 0 or len(tgt_sent_id) == 0:
+            if len(src_sent_id) == 0 or len(tgt_sent_id) == 0 or word_links.strip() == '':
                 continue  # there is no alignment here
 
             # one sentence links
@@ -181,7 +181,7 @@ class WordAligner:
 
         finally:
             os.remove(in_path)
-            os.remove(out_path)
+            #os.remove(out_path)
 
 
 if __name__=='__main__':
