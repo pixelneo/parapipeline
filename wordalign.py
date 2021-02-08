@@ -15,8 +15,8 @@ from pipeline.aligners import eflomal
 from pipeline import utils
 
 def word_align(input_, a):
-    logging.info(f'word-aligning "{file1}" and "{file2}"')
     tagged_file1, tagged_file2, sent_aligned_path, file1, file2, out_name, out_dir = input_
+    logging.info(f'word-aligning "{file1}" and "{file2}"')
 
     links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
     output_xml = utils.word_alignment_to_xml(links, file1, file2)
