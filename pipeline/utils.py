@@ -11,6 +11,9 @@ from lxml import etree
 
 FILE_PATH = os.path.dirname(__file__)
 
+def decode(string):
+    return str(string).decode('utf-8', 'backslashreplace')
+
 def get_config():
     """ Load json config file and return it in dict. """
     path = os.path.join('config', 'config.json')
@@ -95,19 +98,19 @@ def output_to_xml(sents_iter: Iterator[List[Dict]], id_: str, lang:str):
             # w can have 'word_trans' and 'lemma_trans'
             # w can have more keys
 
-            word = w['word']
-            lemma = w['lemma']
+            word = decode(w['word'])
+            lemma = decode(w['lemma'])
             w.pop('word')
             w.pop('lemma')
 
             attr_w = elems['w']
             if 'word_trans' in w:
-                attr_w.update({'word_trans': w['word_trans'], 'lemma_trans': w['lemma_trans']})
+                attr_w.update({'word_trans': decode(w['word_trans']), 'lemma_trans': decode(w['lemma_trans'])})
 
             w.pop('word_trans', None) # try to pop transliterated
             w.pop('lemma_trans', None)
 
-            attr_w.update({'lemma': lemma, 'tag': ' '.join(w.values())})
+            attr_w.update({'lemma': decode(lemma), 'tag': ' '.join(map(decode, w.values()))})
             w_element = etree.SubElement(s_element, 'w', attrib=attr_w)
             w_element.text = word
 
