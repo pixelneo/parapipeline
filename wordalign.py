@@ -7,18 +7,28 @@ import itertools
 import logging
 import os
 
-#from joblib import Parallel, delayed
+from joblib import Parallel, delayed
 
 from tag import tag_lang_files
 from align import align_book_files
 from pipeline.aligners import eflomal
 from pipeline import utils
 
+def word_align(input_):
+    logging.info(f'word-aligning "{file1}" and "{file2}"')
+    tagged_file1, tagged_file2, sent_aligned_path, file1, file2, out_name, out_dir = input_
+
+    links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
+    output_xml = utils.word_alignment_to_xml(links, file1, file2)
+    utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
+    logging.info(f'DONE word aligning "{file1}" and "{file2}"')
+
 
 def word_align_book_files(book_files, out_dir, rewrite:bool = False):
     """ input like {'hobbit': [('eng', 'a', '../hobbit_ENG_a.txt'), ('pol', 'a', ...)...], ...} """
     a = eflomal.WordAligner()
     logging.info('Started word aligning...')
+    cache = []
     for book, texts in book_files.items():
         pairs = itertools.combinations(texts, 2)
         for (l1, v1, file1), (l2, v2, file2) in pairs:
@@ -43,11 +53,16 @@ def word_align_book_files(book_files, out_dir, rewrite:bool = False):
                 tag_lang_files({l2: [(book, v2, file2)]}, out_dir, rewrite)
 
 
-            logging.info(f'word-aligning "{file1}" and "{file2}"')
-            links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
-            output_xml = utils.word_alignment_to_xml(links, file1, file2)
-            utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
-            logging.info(f'DONE word aligning "{file1}" and "{file2}"')
+            #logging.info(f'word-aligning "{file1}" and "{file2}"')
+            #links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
+            #output_xml = utils.word_alignment_to_xml(links, file1, file2)
+            #utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
+            #logging.info(f'DONE word aligning "{file1}" and "{file2}"')
+            input_ = (tagged_file1, tagged_file2, sent_aligned_path, file1, file2, out_name, out_dir)
+            cache.append(input_)
+
+    Parallel(n_jobs=-1)(delayed(word_align)(i) for i in cache)
+
     logging.info('DONE word aligning')
 
 
