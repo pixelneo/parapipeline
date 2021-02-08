@@ -27,7 +27,6 @@
         "transliterate_before": false,
         "polyglot_code": "hr"
     },
-    "bos": {},
     "ces": {
         "tagger": "udpipe",
         "model": "czech-pdt-ud-2.5-191206.udpipe",
