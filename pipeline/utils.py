@@ -12,6 +12,7 @@ from lxml import etree
 FILE_PATH = os.path.dirname(__file__)
 
 def decode(string):
+    a = str(string)
     mpa = dict.fromkeys(range(32))
     return a.translate(mpa)
 
