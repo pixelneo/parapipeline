@@ -20,6 +20,20 @@ def get_config():
 def word_alignment_to_xml(links:list, path_src, path_tgt):
     raise NotImplementedError('')
 
+    # TODO: this is copied from sent align.
+    src_name = os.path.basename(path_src)
+    tgt_name = os.path.basename(path_tgt)
+    doc = etree.Element('linkGrp', attrib={'toDoc': src_name, 'fromDoc': tgt_name})
+
+    for (t0, t1), from_, to_ in links:
+        attr = {
+                'type': f'{t0}-{t1}',
+                'xtargets': f'{" ".join(map(str, from_))};{" ".join(map(str, to_))}',
+                'status': 'null'  # TODO what should be here
+        }
+        link = etree.SubElement(doc, 'link', attrib=attr)
+    return etree.tostring(doc, pretty_print=True, method='xml', encoding='unicode')
+
 def alignment_to_xml(links:list, path_src, path_tgt):
     """ Converts aligned documents to XML
 

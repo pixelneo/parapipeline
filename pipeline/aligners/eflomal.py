@@ -98,10 +98,43 @@ class WordAligner:
             original_sents_end: number of words per each sentence
 
         """
-        # TODO iterate zip(sentence_indices), IGNORE such where at least of the lists is len()==0
 
         # TODO  test last commit
-        pass
+        word_alignment = []  # list of strings for the pair of docs
+        for src_sent_id, tgt_sent_id, word_links, src_sent_len, tgt_sent_len in zip(sentence_indices, links, original_sents_end):
+            if len(src_sent_id) == 0 or len(tgt_sent_id) == 0:
+                continue  # there is no alignment here
+
+            # one sentence links
+            sentence_result = []  # list of strings for each aligned block of text
+
+            src_sent_end = [src_sent_len[i-1]+src_sent_len[i] for i in range(1, len(src_sent_len))]
+            src_sent_end.insert(0, src_sent_len[0])
+            tgt_sent_end = [tgt_sent_len[i-1]+tgt_sent_len[i] for i in range(1, len(tgt_sent_len))]
+            tgt_sent_end.insert(0, tgt_sent_len[0])
+            src_sent_current_index = 0
+            tgt_sent_current_index = 0
+
+
+            for s, t in word_links:
+                one_link = []
+                if s < src_sent_end[src_sent_current_index]:
+                    # string: 2:4 .... sentence 2, work 4
+                    one_link.append(f'{src_sent_id[src_sent_current_index]}:{s}')
+                else:
+                    src_sent_current_index += 1  # new real sent
+
+                if t < tgt_sent_end[tgt_sent_current_index]:
+                    one_link.append(f'{tgt_sent_id[tgt_sent_current_index]}:{t}')
+                else:
+                    tgt_sent_current_index += 1  # new real sent
+
+                sentence_result.append(';'.join(one_link))
+
+            word_alignment.append(' '.join(sentence_result))
+
+        return word_alignment
+
 
 
 
