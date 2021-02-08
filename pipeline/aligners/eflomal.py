@@ -181,8 +181,7 @@ class WordAligner:
 
         finally:
             os.remove(in_path)
-            print(out_path)
-            #os.remove(out_path)
+            os.remove(out_path)
 
 
 if __name__=='__main__':
