@@ -46,6 +46,7 @@ def _parallel_tag_files(book_name, version, path, config, lang, enc='utf-8', out
         tagger = _get_correct_tagger(config, lang)
     except ValueError as e:
         logging.error(f'tagger for {lang} does not exist')
+        return
 
     sents_iter = tagger.process_file(path, lang, encoding=enc)
     sentences = sents_iter
