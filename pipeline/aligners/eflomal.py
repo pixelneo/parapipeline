@@ -104,35 +104,44 @@ class WordAligner:
 
         # TODO  test last commit
         word_alignment = []  # list of strings for the pair of docs
-        for src_sent_id, tgt_sent_id, word_links, src_sent_len, tgt_sent_len in zip(sentence_indices, links, original_sents_end):
+        for src_sent_id, tgt_sent_id, word_links, src_sent_len, tgt_sent_len in zip(*sentence_indices, links, *original_sents_end):
             if len(src_sent_id) == 0 or len(tgt_sent_id) == 0:
                 continue  # there is no alignment here
 
             # one sentence links
             sentence_result = []  # list of strings for each aligned block of text
 
-            src_sent_end = [src_sent_len[i-1]+src_sent_len[i] for i in range(1, len(src_sent_len))]
-            src_sent_end.insert(0, src_sent_len[0])
-            tgt_sent_end = [tgt_sent_len[i-1]+tgt_sent_len[i] for i in range(1, len(tgt_sent_len))]
-            tgt_sent_end.insert(0, tgt_sent_len[0])
+            src_sent_end = [sum(src_sent_len[:i+1]) for i in range(len(src_sent_len))]
+            #src_sent_end.insert(0, src_sent_len[0])
+            tgt_sent_end = [sum(tgt_sent_len[:i+1]) for i in range(len(tgt_sent_len))]
+            #tgt_sent_end.insert(0, tgt_sent_len[0])
             src_sent_current_index = 0
             tgt_sent_current_index = 0
 
-
-            for s, t in word_links:
+            for s, t in (map(int, a.split('-')) for a in word_links):
                 one_link = []
-                if s < src_sent_end[src_sent_current_index]:
-                    # string: 2:4 .... sentence 2, work 4
-                    one_link.append(f'{src_sent_id[src_sent_current_index]}:{s}')
-                else:
-                    src_sent_current_index += 1  # new real sent
+                try:
+                    if s < src_sent_end[src_sent_current_index]:
+                        # string: 2:4 .... sentence 2, work 4
+                        one_link.append(f'{src_sent_id[src_sent_current_index]}:{s}')
+                    else:
+                        src_sent_current_index += 1  # new real sent
 
-                if t < tgt_sent_end[tgt_sent_current_index]:
-                    one_link.append(f'{tgt_sent_id[tgt_sent_current_index]}:{t}')
-                else:
-                    tgt_sent_current_index += 1  # new real sent
+                    if t < tgt_sent_end[tgt_sent_current_index]:
+                        one_link.append(f'{tgt_sent_id[tgt_sent_current_index]}:{t}')
+                    else:
+                        tgt_sent_current_index += 1  # new real sent
 
-                sentence_result.append(';'.join(one_link))
+                    sentence_result.append(';'.join(one_link))
+                except Exception as e:
+                    print(word_links)
+                    print(src_sent_end)
+                    print(tgt_sent_end)
+                    print(src_sent_len)
+                    print(tgt_sent_len)
+                    print(src_sent_current_index)
+                    print(tgt_sent_current_index)
+                    raise e
 
             word_alignment.append(' '.join(sentence_result))
 

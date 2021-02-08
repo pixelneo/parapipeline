@@ -18,8 +18,6 @@ def get_config():
         return json.load(f)
 
 def word_alignment_to_xml(word_alignment:list, path_src, path_tgt):
-    raise NotImplementedError('')
-
     src_name = os.path.basename(path_src)
     tgt_name = os.path.basename(path_tgt)
     doc = etree.Element('linkGrp', attrib={'toDoc': src_name, 'fromDoc': tgt_name, 'type': 'word-alignment'})
@@ -30,6 +28,7 @@ def word_alignment_to_xml(word_alignment:list, path_src, path_tgt):
         }
         link = etree.SubElement(doc, 'link', attrib=attr)
     return etree.tostring(doc, pretty_print=True, method='xml', encoding='unicode')
+
 
 def alignment_to_xml(links:list, path_src, path_tgt):
     """ Converts aligned documents to XML
