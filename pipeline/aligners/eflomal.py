@@ -118,7 +118,7 @@ class WordAligner:
             src_sent_current_index = 0
             tgt_sent_current_index = 0
 
-            for s, t in (map(int, a.split('-')) for a in word_links):
+            for s, t in (map(int, a.strip().split('-')) for a in word_links):
                 one_link = []
                 try:
                     if s < src_sent_end[src_sent_current_index]:
