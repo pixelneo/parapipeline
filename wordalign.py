@@ -14,9 +14,9 @@ from align import align_book_files
 from pipeline.aligners import eflomal
 from pipeline import utils
 
-def word_align(input_):
-    tagged_file1, tagged_file2, sent_aligned_path, file1, file2, out_name, out_dir = input_
+def word_align(input_, a):
     logging.info(f'word-aligning "{file1}" and "{file2}"')
+    tagged_file1, tagged_file2, sent_aligned_path, file1, file2, out_name, out_dir = input_
 
     links = a.align_files(tagged_file1, tagged_file2, sent_aligned_path)
     output_xml = utils.word_alignment_to_xml(links, file1, file2)
@@ -61,7 +61,7 @@ def word_align_book_files(book_files, out_dir, rewrite:bool = False):
             input_ = (tagged_file1, tagged_file2, sent_aligned_path, file1, file2, out_name, out_dir)
             cache.append(input_)
 
-    Parallel(n_jobs=-1)(delayed(word_align)(i) for i in cache)
+    Parallel(n_jobs=-1)(delayed(word_align)(i,a) for i in cache)
 
     logging.info('DONE word aligning')
 
