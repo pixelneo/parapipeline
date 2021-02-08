@@ -51,7 +51,7 @@ class WordAligner:
                     for s in p:
                         tokens = []
                         for t in s:
-                            tokens.append(t.text)
+                            tokens.append(t.text.replace(' ', ''))
                         sents[i].append(tokens)
 
         root = etree.parse(align).getroot()
