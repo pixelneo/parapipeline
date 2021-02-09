@@ -109,4 +109,9 @@ class Aligner:
         with open(path_tgt) as f:
             for i in f.readlines():
                 len_tgt += 1
-        return self._convert_output(p.stdout, len_src, len_tgt)
+        try:
+            return self._convert_output(p.stdout, len_src, len_tgt)
+        except Exception as e:
+            print('stdout:', p.stdout)
+            print('stderr:', p.stderr)
+            raise e
