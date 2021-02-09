@@ -114,4 +114,5 @@ class Aligner:
         if p.stdout.strip() == '': #and p.stderr.strip() != '':
             logging.error(f'Hunalign error (sentence alignment of "{path_src}" and "{path_tgt}"), error: {p.stderr}')
             raise ValueError('Hunalign error')
+
         return self._convert_output(p.stdout, len_src, len_tgt)

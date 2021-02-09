@@ -57,6 +57,7 @@ def align_book_files(book_files, out_dir, rewrite:bool = False):
     logging.info('DONE aligning')
 
 
+
 if __name__=='__main__':
     import argparse
 
