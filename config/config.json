@@ -27,7 +27,6 @@
         "transliterate_before": false,
         "polyglot_code": "hr"
     },
-    "bos": {},
     "ces": {
         "tagger": "udpipe",
         "model": "czech-pdt-ud-2.5-191206.udpipe",
@@ -55,7 +54,8 @@
         "model": "mk",
         "transliterate": true,
         "transliterate_before": null,
-        "polyglot_code": "mk"
+        "polyglot_code": "mk",
+        "tokenizer": "srp"
     },
     "slk": {
         "tagger": "udpipe",
@@ -202,7 +202,8 @@
         "model": "ka.par",
         "transliterate": true,
         "transliterate_before": false,
-        "polyglot_code": "ka"
+        "polyglot_code": "ka",
+        "tokenizer": "tur"
     },
     "por": {
         "tagger": "udpipe",

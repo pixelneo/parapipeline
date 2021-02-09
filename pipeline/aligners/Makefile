@@ -3,9 +3,12 @@ down:
 	wget -c ftp://ftp.mokk.bme.hu/Hunglish/src/hunalign/latest/hunalign-1.1.tgz
 	tar zxvf hunalign-1.1.tgz
 	mv hunalign-1.1 hunalign
+
 build:
 	cd hunalign/src/hunalign && make
 	echo > hunalign/data/null.dic  # empty dict
+	pip install -r requirements.txt 
+	cd eflomal && make && makedir bin && make install -e INSTALLDIR=./bin && python setup.py install
 
 clean:
 	rm -rf hunalign/

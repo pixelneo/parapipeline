@@ -11,11 +11,28 @@ from lxml import etree
 
 FILE_PATH = os.path.dirname(__file__)
 
+def decode(string):
+    a = str(string)
+    mpa = dict.fromkeys(range(32))
+    return a.translate(mpa)
+
 def get_config():
     """ Load json config file and return it in dict. """
     path = os.path.join('config', 'config.json')
     with open(path) as f:
         return json.load(f)
+
+def word_alignment_to_xml(word_alignment:list, path_src, path_tgt):
+    src_name = os.path.basename(path_src)
+    tgt_name = os.path.basename(path_tgt)
+    doc = etree.Element('linkGrp', attrib={'toDoc': src_name, 'fromDoc': tgt_name, 'type': 'word-alignment'})
+
+    for l in word_alignment:
+        attr = {
+                'xtargets': l
+        }
+        link = etree.SubElement(doc, 'link', attrib=attr)
+    return etree.tostring(doc, pretty_print=True, method='xml', encoding='unicode')
 
 
 def alignment_to_xml(links:list, path_src, path_tgt):
@@ -83,32 +100,37 @@ def output_to_xml(sents_iter: Iterator[List[Dict]], id_: str, lang:str):
             # w can have 'word_trans' and 'lemma_trans'
             # w can have more keys
 
-            word = w['word']
-            lemma = w['lemma']
+            word = decode(w['word'])
+            lemma = decode(w['lemma'])
             w.pop('word')
             w.pop('lemma')
 
             attr_w = elems['w']
             if 'word_trans' in w:
-                attr_w.update({'word_trans': w['word_trans'], 'lemma_trans': w['lemma_trans']})
+                attr_w.update({'word_trans': decode(w['word_trans']), 'lemma_trans': decode(w['lemma_trans'])})
 
             w.pop('word_trans', None) # try to pop transliterated
             w.pop('lemma_trans', None)
 
-            attr_w.update({'lemma': lemma, 'tag': ' '.join(w.values())})
+            attr_w.update({'lemma': decode(lemma), 'tag': ' '.join(map(decode, w.values()))})
             w_element = etree.SubElement(s_element, 'w', attrib=attr_w)
             w_element.text = word
 
     return etree.tostring(doc, pretty_print=True, method='xml', encoding='unicode')
 
 def file_exists(path_original:str, out_dir:str, ext:str):
-    file_name = os.path.basename(path_original)
+    file_name = os.path.basename(path_original).lower()
     output_path = os.path.join(out_dir, f'{file_name}{ext}')
     return os.path.exists(output_path)
 
+def out_path(path_original:str, out_dir:str, ext:str):
+    file_name = os.path.basename(path_original).lower()
+    output_path = os.path.join(out_dir, f'{file_name}{ext}')
+    return output_path
+
 def save_output(text:str, path_original:str, out_dir:str, ext:str):
     """ Saves `text` to `out_dir`/{filename of `path_original`} """
-    file_name = os.path.basename(path_original)
+    file_name = os.path.basename(path_original).lower()
     output_path = os.path.join(out_dir, f'{file_name}{ext}')
     # TODO gzip option?
     with open(output_path, 'w') as f:

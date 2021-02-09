@@ -6,6 +6,7 @@
 import os
 import subprocess
 import tempfile
+import logging
 
 FILE_PATH = os.path.dirname(__file__)
 
@@ -109,7 +110,9 @@ class Aligner:
         with open(path_tgt) as f:
             for i in f.readlines():
                 len_tgt += 1
-        if p.stdout.strip() == '':
-            res = 'Files "{}", "{}" cannot be aligned'.format(path_src, path_tgt)
-            raise ValueError(res)
+
+        if p.stdout.strip() == '': #and p.stderr.strip() != '':
+            logging.error(f'Hunalign error (sentence alignment of "{path_src}" and "{path_tgt}"), error: {p.stderr}')
+            raise ValueError('Hunalign error')
+
         return self._convert_output(p.stdout, len_src, len_tgt)

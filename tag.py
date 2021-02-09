@@ -4,8 +4,8 @@
 '''
 
 import os
+import logging
 import warnings
-import sys
 
 from joblib import Parallel, delayed
 
@@ -41,57 +41,57 @@ def _get_correct_tagger(config:dict, lang):
 def _parallel_tag_files(book_name, version, path, config, lang, enc='utf-8', out_dir=None, print_=False, rewrite:bool =False):
     if utils.file_exists(path, out_dir, '_tagged.xml') and not rewrite:
         # if already aligned file exist and we are not going to `rewerite` them
-        print(f'  skipping file "{path}"')
+        logging.warning(f'skipping file "{path}"')
         return
-    print(f'  tagging "{path}"...')
+    logging.info(f'tagging "{path}"...')
     try:
         tagger = _get_correct_tagger(config, lang)
+    except ValueError as e:
+        logging.error(f'tagger for {lang} does not exist')
+        return
 
-        sents_iter = tagger.process_file(path, lang, encoding=enc)
-        sentences = sents_iter
+    sents_iter = tagger.process_file(path, lang, encoding=enc)
+    sentences = sents_iter
 
-        if config[lang]['transliterate']:
-            print(f'    transliterating "{path}"...')
-            polyglot_code = utils.get_polyglot_lang_code(config, lang)
-            sentences = []
-            for s in sents_iter:
-                sent = []
-                for w in s:
-                    w['word_trans'] = ''.join(transliterate.transliterate(w['word'], polyglot_code))
-                    w['lemma_trans'] = ''.join(transliterate.transliterate(w['lemma'], polyglot_code))
-                    sent.append(w)
-                sentences.append(sent)
-            print(f'    DONE transliterating "{path}"')
-        output_xml = utils.output_to_xml(sentences, os.path.basename(path), lang)  # TODO id_ if files given as list/by file
+    if config[lang]['transliterate']:
+        logging.info(f'transliterating "{path}"...')
+        polyglot_code = utils.get_polyglot_lang_code(config, lang)
+        sentences = []
+        for s in sents_iter:
+            sent = []
+            for w in s:
+                w['word_trans'] = ''.join(transliterate.transliterate(w['word'], polyglot_code))
+                w['lemma_trans'] = ''.join(transliterate.transliterate(w['lemma'], polyglot_code))
+                sent.append(w)
+            sentences.append(sent)
+        logging.info(f'DONE transliterating "{path}"')
+    output_xml = utils.output_to_xml(sentences, os.path.basename(path), lang)  # TODO id_ if files given as list/by file
 
-        if print_:
-            print(output_xml)
-        else:
-            utils.save_output(output_xml, path, out_dir, '_tagged.xml')
-        print(f'  DONE tagging "{path}"')
-    except Exception as e:
-        print(f'ERROR with file {path}, skipping', file=sys.stderr)
-        print('   ', str(e), file=sys.stderr)
+    if print_:
+        logging.info(output_xml)
+    else:
+        utils.save_output(output_xml, path, out_dir, '_tagged.xml')
+    logging.info(f'DONE tagging "{path}"')
 
 
 def tag_lang_files(lang_files:dict, config, out_dir, print_=False, rewrite:bool = False):
     """ Tag `lang_files`
         {'eng': [('hobbit', 'a', '../hobbit_END_a.txt'), ('prince', 'a', ...)...], ...}
     """
-    print('\nStarted tagging...')
+    logging.info('Started tagging...')
     flat_files = utils.flatten_lang_files(lang_files)
     Parallel(n_jobs=-2)(delayed(_parallel_tag_files)(book_name, version, path, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite) for book_name, version, path, lang in flat_files)
     # for lang, books in lang_files.items():
         # tagger = _get_correct_tagger(config, lang)
         # _tag_files(tagger, books, config, lang, out_dir=out_dir, print_=print_, rewrite=rewrite)
-    print('DONE tagging')
+    logging.info('DONE tagging')
 
 
 if __name__=='__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Tag files.')
-    parser.add_argument('-d','--output_dir', type=str, default='.', help='Directory to which to write the output files.')
+    parser.add_argument('-o','--output_dir', type=str, default='.', help='Directory to which to write the output files.')
     parser.add_argument('input', metavar='N', default=None, type=str, nargs='+', help='List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt')
 
     args = parser.parse_args()
