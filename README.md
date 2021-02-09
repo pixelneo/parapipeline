@@ -42,10 +42,12 @@ See `examples/outputs` for example output of this pipeline.
 Aligned sentences are represented by `link` tag.
 
 - Attribute `type` denotes the number of sentences from source and target text.
-- Attribute `xtargets` is the alignment itself: `6 7;5` meaning sentences 6,7 from source are aligned with sentence 5 from target.
+- Attribute `xtargets` is the alignment itself: `6 7;5` meaning sentences `6`,`7` from source are aligned with sentence `5` from target.
 
 #### Word alignment
+Each `link` represents an "aligned block" - aligned sentences.
 
+Attribute `xtargets` contains is a space-separated list of alignments... `1:2;3:4` means that word `2` from sentence `1` in source text is aligned with word `4` in sentence `3` in the target text.
 
 ### Help 
 ~~~
