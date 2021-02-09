@@ -14,6 +14,8 @@ Make sure you have following programs installed
 Run `git lfs install`.
 Run `make` to install necessary packages, compile taggers, aligners, download models, ...
 
+The installation process is not thoroughly tested on various systems (it should work on Ubuntu 18.04), if you encounter an error it's likely caused by a missing prerequisite.
+
 ## Usage
 There are scripts `tag`, `transliterate`, `align`, `wordalign` and `run`
 
@@ -25,15 +27,25 @@ All scripts expect line delimited sentences in utf-8 encoded files.
 The name of these files is `NAME_LANG[_ID][.ext]`, where `NAME` is arbitrary text not containing `_`, `LANG` is iso-639-3 language code, 
 optional `ID` distinguished between more variants of the same text (e.g. different translations), `.ext` is also optional.
 
+Inputs have to be case insensitive (if you have file NAME and Name, it will cause errors).
+
 See files in `examples` folder for some example input files.
 
 ### Output
 `run` script outputs tagged texts in XML files. 
 
 And when possible also sentence and word alignment files in XML. 
-This file contains the alignment.
 
 See `examples/outputs` for example output of this pipeline.
+#### Sentence alignment
+
+Aligned sentences are represented by `link` tag.
+
+- Attribute `type` denotes the number of sentences from source and target text.
+- Attribute `xtargets` is the alignment itself: `6 7;5` meaning sentences 6,7 from source are aligned with sentence 5 from target.
+
+#### Word alignment
+
 
 ### Help 
 ~~~

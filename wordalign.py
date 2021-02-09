@@ -47,6 +47,9 @@ def word_align_book_files(book_files, config, out_dir, rewrite:bool = False):
             if not utils.file_exists(out_name, out_dir, '_aligned.xml'):
                 logging.warning(f'files "{file1}" and "{file2}" were not sentence aligned, aligning...')
                 align_book_files({book: [(l1, v1, file1), (l2, v2, file2)]}, out_dir, rewrite)
+                if utils.file_exists(out_name, out_dir, '_aligned.xml'):
+                    logging.warning(f'sentence alignment cannot be done for "{file1}" and "{file2}"')
+                    continue
 
             if not utils.file_exists(file1, out_dir, '_tagged.xml'):
                 logging.warning(f'file "{file1}" is not tagged, tagging...')
