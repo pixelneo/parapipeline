@@ -32,7 +32,6 @@ def _parallel_align(input_, a):
         utils.save_output(output_xml, out_name, out_dir, '_aligned.xml')
     except Exception as e:
         logging.error(f'Error with sentence alignment of "{file1}" and "{file2}"')
-        raise e
 
     logging.info(f'DONE aligning "{file1}" and "{file2}"')
 
