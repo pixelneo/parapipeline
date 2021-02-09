@@ -6,6 +6,8 @@
 import itertools
 import logging
 
+from joblib import Parallel, delayed
+
 from pipeline.aligners import hunalign
 from pipeline import utils
 
@@ -21,10 +23,24 @@ def _align(src, tgt):
     return a.align(src, tgt)
 
 
+def _parallel_align(input_, a):
+    file1, file2, out_name, out_dir = input_
+    logging.info(f'aligning "{file1}" and "{file2}"')
+    try:
+        links = a.align_files(file1, file2)
+        output_xml = utils.alignment_to_xml(links, file1, file2)
+        utils.save_output(output_xml, out_name, out_dir, '_aligned.xml')
+    except Exception as e:
+        logging.error(f'Error with alignment of "{file1}" and "{file2}"')
+
+    logging.info(f'DONE aligning "{file1}" and "{file2}"')
+
+
 def align_book_files(book_files, out_dir, rewrite:bool = False):
     """ input like {'hobbit': [('eng', 'a', '../hobbit_ENG_a.txt'), ('pol', 'a', ...)...], ...} """
     a = hunalign.Aligner()
     logging.info('Started aligning...')
+    cache = []
     for book, texts in book_files.items():
         pairs = itertools.combinations(texts, 2)
         for (l1, v1, file1), (l2, v2, file2) in pairs:
@@ -33,11 +49,11 @@ def align_book_files(book_files, out_dir, rewrite:bool = False):
                 # if already aligned file exist and we are not going to `rewerite` them
                 logging.warning(f'skipping pair "{file1}" and "{file2}"')
                 continue
-            logging.info(f'aligning "{file1}" and "{file2}"')
-            links = a.align_files(file1, file2)
-            output_xml = utils.alignment_to_xml(links, file1, file2)
-            utils.save_output(output_xml, out_name, out_dir, '_aligned.xml')
-            logging.info(f'DONE aligning "{file1}" and "{file2}"')
+            input_ = (file1, file2, out_name, out_dir)
+            cache.append(input_)
+
+    Parallel(n_jobs=-1)(delayed(_parallel_align)(i, a) for i in cache)
+
     logging.info('DONE aligning')
 
 

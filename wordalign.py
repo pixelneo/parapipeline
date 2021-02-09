@@ -23,7 +23,7 @@ def word_align(input_, a):
         output_xml = utils.word_alignment_to_xml(links, file1, file2)
         utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
     except Exception as e:
-        logging.info(f'Error with alignment of "{file1}" and "{file2}"')
+        logging.error(f'Error with alignment of "{file1}" and "{file2}"')
         raise e
     logging.info(f'DONE word aligning "{file1}" and "{file2}"')
 
