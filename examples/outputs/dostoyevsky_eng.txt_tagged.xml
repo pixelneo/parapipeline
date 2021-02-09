@@ -106,8 +106,7 @@
         <w lemma="provide" tag="VERB VBN Tense=Past|VerbForm=Part|Voice=Pass">provided</w>
         <w lemma="with" tag="ADP IN ">with</w>
         <w lemma="police" tag="NOUN NN Number=Sing">police</w>
-        <w lemma="-" tag="PUNCT , ">-</w>
-        <w lemma="master" tag="NOUN NN Number=Sing">master</w>
+        <w lemma="-master" tag="NOUN NN Number=Sing">-master</w>
         <w lemma="," tag="PUNCT , ">,</w>
         <w lemma="assessor" tag="NOUN NNS Number=Plur">assessors</w>
         <w lemma="," tag="PUNCT , ">,</w>

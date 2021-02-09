@@ -86,15 +86,13 @@
         <w lemma="tam" tag="ADV Db------------- PronType=Dem">tam</w>
         <w lemma="zima" tag="NOUN NNFS1-----A---- Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos">zima</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
-      </s>
-      <s id="3">
         <w lemma="být" tag="AUX VB-P---3P-AA--- Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act">jsou</w>
         <w lemma="úřad" tag="NOUN NNIP1-----A---- Animacy=Inan|Case=Nom|Gender=Masc|Number=Plur|Polarity=Pos">úřady</w>
         <w lemma="obyčejně" tag="ADV Dg-------1N---- Degree=Pos|Polarity=Neg">neobyčejně</w>
         <w lemma="teploučký" tag="ADJ AAIP1----1A---- Animacy=Inan|Case=Nom|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos">teploučké</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="4">
+      <s id="3">
         <w lemma="lid" tag="NOUN NNIS1-----A---- Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos">Lid</w>
         <w lemma="tamní" tag="ADJ AAIS1----1A---- Animacy=Inan|Case=Nom|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Pos">tamní</w>
         <w lemma="být" tag="AUX VB-S---3P-AA--- Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act">je</w>
@@ -103,8 +101,6 @@
         <w lemma="načichlý" tag="ADJ AAIS1----1N---- Animacy=Inan|Case=Nom|Degree=Pos|Gender=Masc|Number=Sing|Polarity=Neg">nenačichlý</w>
         <w lemma="liberálnost" tag="NOUN NNFS7-----A---- Case=Ins|Gender=Fem|Number=Sing|Polarity=Pos">liberálností</w>
         <w lemma=";" tag="PUNCT Z:------------- ">;</w>
-      </s>
-      <s id="5">
         <w lemma="pořádka" tag="NOUN NNIP4-----A---- Animacy=Inan|Case=Acc|Gender=Masc|Number=Plur|Polarity=Pos">pořádky</w>
         <w lemma="starý" tag="ADJ AAIP4----1A---- Animacy=Inan|Case=Acc|Degree=Pos|Gender=Masc|Number=Plur|Polarity=Pos">staré</w>
         <w lemma="," tag="PUNCT Z:------------- ">,</w>
@@ -114,7 +110,7 @@
         <w lemma="posvěcený" tag="ADJ AANS1----1A---- Case=Nom|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos">posvěcené</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="6">
+      <s id="4">
         <w lemma="úředník" tag="NOUN NNMP4-----A---- Animacy=Anim|Case=Acc|Gender=Masc|Number=Plur|Polarity=Pos">Úředníky</w>
         <w lemma="," tag="PUNCT Z:------------- ">,</w>
         <w lemma="který" tag="DET P4MP1---------- Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|PronType=Int,Rel">kteří</w>
@@ -159,7 +155,7 @@
         <w lemma="budoucno" tag="NOUN NNNS2-----A---- Case=Gen|Gender=Neut|Number=Sing|Polarity=Pos">budoucna</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="7">
+      <s id="5">
         <w lemma="ten" tag="DET PDMP1---------- Animacy=Anim|Case=Nom|Gender=Masc|Number=Plur|PronType=Dem">Ti</w>
         <w lemma="z" tag="ADP RR--2---------- AdpType=Prep|Case=Gen">z</w>
         <w lemma="on" tag="PRON P5XP2--3------- Case=Gen|Number=Plur|Person=3|PrepCase=Pre|PronType=Prs">nich</w>
@@ -187,7 +183,7 @@
         <w lemma="kořen" tag="NOUN NNIP4-----A---- Animacy=Inan|Case=Acc|Gender=Masc|Number=Plur|Polarity=Pos">kořeny</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="8">
+      <s id="6">
         <w lemma="za" tag="ADP RR--4---------- AdpType=Prep|Case=Acc">Za</w>
         <w lemma="ten" tag="DET PDNS4---------- Case=Acc|Gender=Neut|Number=Sing|PronType=Dem">to</w>
         <w lemma="pozdě" tag="ADV Dg-------2A---- Degree=Cmp|Polarity=Pos">později</w>
@@ -198,7 +194,7 @@
         <w lemma="ovoce" tag="NOUN NNFP4-----A---- Case=Acc|Gender=Fem|Number=Plur|Polarity=Pos">ovoce</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="9">
+      <s id="7">
         <w lemma="jiný" tag="ADJ AANS1----1A---- Case=Nom|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos">Jiné</w>
         <w lemma="však" tag="CCONJ J^------------- ">však</w>
         <w lemma="," tag="PUNCT Z:------------- ">,</w>
@@ -228,7 +224,7 @@
         <w lemma="přijet" tag="VERB VpMP---XR-AA--- Animacy=Anim|Gender=Masc|Number=Plur|Polarity=Pos|Tense=Past|VerbForm=Part|Voice=Act">přijeli</w>
         <w lemma="?" tag="PUNCT Z:------------- ">?</w>
       </s>
-      <s id="10">
+      <s id="8">
         <w lemma="moci" tag="VERB VB-P---3P-NA--1 Mood=Ind|Number=Plur|Person=3|Polarity=Neg|Tense=Pres|VerbForm=Fin|Voice=Act">Nemohou</w>
         <w lemma="se" tag="PRON P7-X4---------- Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short">se</w>
         <w lemma="dočkat" tag="VERB Vf--------A---2 Aspect=Imp|Polarity=Pos|Style=Arch|VerbForm=Inf">dočkati</w>
@@ -278,7 +274,7 @@
         <w lemma="žert" tag="NOUN NNFP1-----A---- Case=Nom|Gender=Fem|Number=Plur|Polarity=Pos">žerty</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="11">
+      <s id="9">
         <w lemma="avšak" tag="CCONJ J^------------- ">Avšak</w>
         <w lemma="právem" tag="ADV Db--------N---- Polarity=Neg">neprávem</w>
         <w lemma=":" tag="PUNCT Z:------------- ">:</w>
@@ -302,7 +298,7 @@
         <w lemma="okolnost" tag="NOUN NNFP3-----A---- Case=Dat|Gender=Fem|Number=Plur|Polarity=Pos">okolnostem</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="12">
+      <s id="10">
         <w lemma="podnebí" tag="NOUN NNNS1-----A---- Case=Nom|Gender=Neut|Number=Sing|Polarity=Pos">Podnebí</w>
         <w lemma="být" tag="AUX VB-S---3P-AA--2 Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Style=Arch|Tense=Pres|VerbForm=Fin|Voice=Act">jest</w>
         <w lemma="výtečný" tag="ADJ AANS1----1A---- Case=Nom|Degree=Pos|Gender=Neut|Number=Sing|Polarity=Pos">výtečné</w>
@@ -322,7 +318,7 @@
         <w lemma="jinorodce" tag="NOUN NNMP2-----A---- Animacy=Anim|Case=Gen|Gender=Masc|Number=Plur|Polarity=Pos">jinorodců</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="13">
+      <s id="11">
         <w lemma="dívka" tag="NOUN NNFP1-----A---- Case=Nom|Gender=Fem|Number=Plur|Polarity=Pos">Dívky</w>
         <w lemma="kvést" tag="NOUN NNFS7-----A---- Case=Ins|Gender=Fem|Number=Sing|Polarity=Pos">kvetou</w>
         <w lemma="růže" tag="NOUN NNFP7-----A---- Case=Ins|Gender=Fem|Number=Plur|Polarity=Pos">růžemi</w>
@@ -332,7 +328,7 @@
         <w lemma="mravný" tag="ADJ VsTP---XX-AP--- Animacy=Inan|Gender=Fem,Masc|Number=Plur|Polarity=Pos|Variant=Short|VerbForm=Part|Voice=Pass">mravny</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="14">
+      <s id="12">
         <w lemma="Pernatý" tag="ADJ AAFS1----1A---- Case=Nom|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos">Pernatá</w>
         <w lemma="zvěř" tag="NOUN NNFS1-----A---- Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos">zvěř</w>
         <w lemma="lítat" tag="VERB VB-S---3P-AA--- Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act">lítá</w>
@@ -345,7 +341,7 @@
         <w lemma="lovec" tag="NOUN NNMS3-----A---- Animacy=Anim|Case=Dat|Gender=Masc|Number=Sing|Polarity=Pos">lovci</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="15">
+      <s id="13">
         <w lemma="šampaňské" tag="NOUN NNNS2-----A---- Case=Gen|Gender=Neut|Number=Sing|Polarity=Pos">Šampaňského</w>
         <w lemma="vypít" tag="VERB VB-S---3P-AA--- Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act">vypije</w>
         <w lemma="se" tag="PRON P7-X4---------- Case=Acc|PronType=Prs|Reflex=Yes|Variant=Short">se</w>
@@ -356,14 +352,14 @@
         <w lemma="uvěřit" tag="VERB VB-P---2P-NA--- Aspect=Perf|Mood=Ind|Number=Plur|Person=2|Polarity=Neg|Tense=Pres|VerbForm=Fin|Voice=Act">neuvěříte</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="16">
+      <s id="14">
         <w lemma="Kaviár" tag="NOUN NNIS1-----A---- Animacy=Inan|Case=Nom|Gender=Masc|Number=Sing|Polarity=Pos">Kaviár</w>
         <w lemma="být" tag="AUX VB-S---3P-AA--- Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act">je</w>
         <w lemma="k" tag="ADP RV--3---------1 AdpType=Voc|Case=Dat">ku</w>
         <w lemma="podiv" tag="NOUN NNIS3-----A---- Animacy=Inan|Case=Dat|Gender=Masc|Number=Sing|Polarity=Pos">podivu</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="17">
+      <s id="15">
         <w lemma="Úroda" tag="NOUN NNFS1-----A---- Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos">Úroda</w>
         <w lemma="v" tag="ADP RR--6---------- AdpType=Prep|Case=Loc">v</w>
         <w lemma="některý" tag="DET PZXP6---------- Case=Loc|Number=Plur|PronType=Ind">některých</w>
@@ -377,13 +373,13 @@
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="18">
+      <s id="16">
         <w lemma="vůbec" tag="ADV Db------------- ">Vůbec</w>
         <w lemma="země" tag="NOUN NNFS1-----A---- Case=Nom|Gender=Fem|Number=Sing|Polarity=Pos">země</w>
         <w lemma="požehnaný" tag="ADJ AAFS1----1A---- Case=Nom|Degree=Pos|Gender=Fem|Number=Sing|Polarity=Pos">požehnaná</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="19">
+      <s id="17">
         <w lemma="být" tag="VERB VB-S---3P-AA--2 Mood=Ind|Number=Sing|Person=3|Polarity=Pos|Style=Arch|Tense=Pres|VerbForm=Fin|Voice=Act">Jest</w>
         <w lemma="pouze" tag="ADV Db------------- ">pouze</w>
         <w lemma="zapotřebí" tag="ADV Db------------- ">zapotřebí</w>
@@ -396,7 +392,7 @@
         <w lemma="užit" tag="VERB Vf--------A---2 Polarity=Pos|Style=Arch|VerbForm=Inf">užiti</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
-      <s id="20">
+      <s id="18">
         <w lemma="a" tag="CCONJ J^------------- ">A</w>
         <w lemma="v" tag="ADP RR--6---------- AdpType=Prep|Case=Loc">v</w>
         <w lemma="Sibiř" tag="PROPN NNIS6-----A---- Animacy=Inan|Case=Loc|Gender=Masc|NameType=Geo|Number=Sing|Polarity=Pos">Sibiři</w>
@@ -405,6 +401,7 @@
         <w lemma="umět" tag="VERB VB-P---3P-AA--- Mood=Ind|Number=Plur|Person=3|Polarity=Pos|Tense=Pres|VerbForm=Fin|Voice=Act">umějí</w>
         <w lemma="." tag="PUNCT Z:------------- ">.</w>
       </s>
+      <s id="19"/>
     </p>
   </text>
 </doc>
