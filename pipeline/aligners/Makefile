@@ -7,10 +7,11 @@ down:
 build:
 	cd hunalign/src/hunalign && make
 	echo > hunalign/data/null.dic  # empty dict
-	pip install -r requirements.txt 
-	cd eflomal && make && makedir bin && make install -e INSTALLDIR=./bin && python setup.py install
+	cd eflomal && make && mkdir -p bin && make install -e INSTALLDIR=./bin && python setup.py install
 
 clean:
 	rm -rf hunalign/
 	rm -rf hunalign-1.1.tgz
+	cd eflomal && make clean && rm -rf bin
+
 
