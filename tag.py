@@ -89,7 +89,7 @@ if __name__=='__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Tag files.')
-    parser.add_argument('-d','--output_dir', type=str, default='.', help='Directory to which to write the output files.')
+    parser.add_argument('-o','--output_dir', type=str, default='.', help='Directory to which to write the output files.')
     parser.add_argument('input', metavar='N', default=None, type=str, nargs='+', help='List of files to be tagged. Format: NAME_LANG[_ID][.ext], for example Hobbit_eng.txt')
 
     args = parser.parse_args()

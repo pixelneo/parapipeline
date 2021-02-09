@@ -28,7 +28,7 @@ def word_align(input_, a):
     logging.info(f'DONE word aligning "{file1}" and "{file2}"')
 
 
-def word_align_book_files(book_files, out_dir, rewrite:bool = False):
+def word_align_book_files(book_files, config, out_dir, rewrite:bool = False):
     """ input like {'hobbit': [('eng', 'a', '../hobbit_ENG_a.txt'), ('pol', 'a', ...)...], ...} """
     a = eflomal.WordAligner()
     logging.info('Started word aligning...')
@@ -51,10 +51,10 @@ def word_align_book_files(book_files, out_dir, rewrite:bool = False):
 
             if not utils.file_exists(file1, out_dir, '_tagged.xml'):
                 logging.warning(f'file "{file1}" is not tagged, tagging...')
-                tag_lang_files({l1: [(book, v1, file1)]}, out_dir, rewrite)
+                tag_lang_files({l1: [(book, v1, file1)]}, config, out_dir, rewrite=rewrite)
             if not utils.file_exists(file2, out_dir, '_tagged.xml'):
                 logging.warning(f'file "{file2}" is not tagged, tagging...')
-                tag_lang_files({l2: [(book, v2, file2)]}, out_dir, rewrite)
+                tag_lang_files({l2: [(book, v2, file2)]}, config, out_dir, rewrite=rewrite)
 
 
             #logging.info(f'word-aligning "{file1}" and "{file2}"')
@@ -82,4 +82,4 @@ if __name__=='__main__':
     # This is the main thing
     config = utils.get_config()
     book_files, lang_files = utils.parse_input_files(args.input, config)
-    word_align_book_files(book_files, args.output_dir)
+    word_align_book_files(book_files, config, args.output_dir)
