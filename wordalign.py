@@ -23,7 +23,7 @@ def word_align(input_, a):
         output_xml = utils.word_alignment_to_xml(links, file1, file2)
         utils.save_output(output_xml, out_name, out_dir, '_word-aligned.xml')
     except Exception as e:
-        logging.error(f'Error with alignment of "{file1}" and "{file2}"')
+        logging.error(f'Error with word alignment of "{file1}" and "{file2}"')
         raise e
     logging.info(f'DONE word aligning "{file1}" and "{file2}"')
 
@@ -43,7 +43,7 @@ def word_align_book_files(book_files, out_dir, rewrite:bool = False):
 
             if utils.file_exists(out_name, out_dir, '_word-aligned.xml') and not rewrite:
                 # if already aligned file exist and we are not going to `rewerite` them
-                logging.warning(f'skipping pair "{file1}" and "{file2}"')
+                logging.warning(f'skipping pair "{file1}" and "{file2}" for word alignment')
                 continue
             if not utils.file_exists(out_name, out_dir, '_aligned.xml'):
                 logging.warning(f'files "{file1}" and "{file2}" were not sentence aligned, aligning...')
